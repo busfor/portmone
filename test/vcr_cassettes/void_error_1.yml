@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://www.portmone.com.ua/gateway/
+    body:
+      encoding: UTF-8
+      string: action=reject&lang=ru&login=SHP_BUSFOR2&method=preauth&password=11111111&payee_id=16336&post_auth_amount=0.0&shop_bill_id=432781508
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 21 Nov 2018 13:02:11 GMT
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '390'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=jss29u8atc6col2h9sdpl2b165; path=/; secure
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHBvcnRt
+        b25lcmVzdWx0IGxhbmc9InJ1Ij48cmVxdWVzdD48YWN0aW9uPnJlamVjdDwv
+        YWN0aW9uPjxsYW5nPnJ1PC9sYW5nPjxsb2dpbj5TSFBfQlVTRk9SMjwvbG9n
+        aW4+PG1ldGhvZD5wcmVhdXRoPC9tZXRob2Q+PHBhc3N3b3JkPioqKioqKioq
+        PC9wYXNzd29yZD48c2hvcF9iaWxsX2lkPjQzMjc4MTUwODwvc2hvcF9iaWxs
+        X2lkPjwvcmVxdWVzdD48b3JkZXI+PGVycm9yX2NvZGU+NjwvZXJyb3JfY29k
+        ZT48ZXJyb3JfbWVzc2FnZT48IVtDREFUQVvQodGH0LXRgiDRg9C20LUg0YDQ
+        sNC90LXQtSDQsdGL0Lsg0L7RgtC80LXQvdC10L0uXV0+PC9lcnJvcl9tZXNz
+        YWdlPjwvb3JkZXI+PC9wb3J0bW9uZXJlc3VsdD4K
+    http_version: 
+  recorded_at: Wed, 21 Nov 2018 13:02:11 GMT
+recorded_with: VCR 2.9.3

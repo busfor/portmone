@@ -1,0 +1,64 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://www.portmone.com.ua/gateway/
+    body:
+      encoding: UTF-8
+      string: action=reject&lang=ru&login=SHP_BUSFOR2&method=preauth&password=11111111&payee_id=16336&post_auth_amount=0.0&shop_bill_id=432781508
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 21 Nov 2018 12:56:31 GMT
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '718'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=fajp0phbjp7ngrqeft3meveh55; path=/; secure
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHBvcnRt
+        b25lcmVzdWx0IGxhbmc9InJ1Ij48cmVxdWVzdD48YWN0aW9uPnJlamVjdDwv
+        YWN0aW9uPjxsYW5nPnJ1PC9sYW5nPjxsb2dpbj5TSFBfQlVTRk9SMjwvbG9n
+        aW4+PG1ldGhvZD5wcmVhdXRoPC9tZXRob2Q+PHBhc3N3b3JkPioqKioqKioq
+        PC9wYXNzd29yZD48c2hvcF9iaWxsX2lkPjQzMjc4MTUwODwvc2hvcF9iaWxs
+        X2lkPjwvcmVxdWVzdD48b3JkZXI+PHNob3BfYmlsbF9pZD40MzI3ODE1MDg8
+        L3Nob3BfYmlsbF9pZD48c2hvcF9vcmRlcl9udW1iZXI+cGF5bWVudF9pZC0z
+        PC9zaG9wX29yZGVyX251bWJlcj48ZGVzY3JpcHRpb24+PCFbQ0RBVEFb0JrQ
+        uNC10LIt0JvRjNCy0L7Qsl1dPjwvZGVzY3JpcHRpb24+PGJpbGxfZGF0ZT4y
+        MS4xMS4yMDE4PC9iaWxsX2RhdGU+PHBheV9kYXRlPjIxLjExLjIwMTg8L3Bh
+        eV9kYXRlPjxwYXlfb3JkZXJfZGF0ZT48L3BheV9vcmRlcl9kYXRlPjxiaWxs
+        X2Ftb3VudD41MDwvYmlsbF9hbW91bnQ+PGF1dGhfY29kZT5URVNUUE08L2F1
+        dGhfY29kZT48c3RhdHVzPlJFSkVDVEVEPC9zdGF0dXM+PGF0dHJpYnV0ZTE+
+        PC9hdHRyaWJ1dGUxPjxhdHRyaWJ1dGUyPjwvYXR0cmlidXRlMj48ZXJyb3Jf
+        Y29kZT4wPC9lcnJvcl9jb2RlPjxlcnJvcl9tZXNzYWdlPjwhW0NEQVRBW11d
+        PjwvZXJyb3JfbWVzc2FnZT48L29yZGVyPjwvcG9ydG1vbmVyZXN1bHQ+Cg==
+    http_version: 
+  recorded_at: Wed, 21 Nov 2018 12:56:31 GMT
+recorded_with: VCR 2.9.3

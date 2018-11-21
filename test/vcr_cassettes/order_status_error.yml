@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://www.portmone.com.ua/gateway/
+    body:
+      encoding: UTF-8
+      string: lang=ru&login=SHP_BUSFOR2&method=result&password=11111111&payee_id=16336&shop_order_number=dummy
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 21 Nov 2018 12:42:10 GMT
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '277'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=8opd6av06va6rqoc9gq4j9fm84; path=/; secure
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="utf-8"?>
+        <portmoneresult lang="ru"><request><payee_id>16336</payee_id><shop_order_number>dummy</shop_order_number><status>%</status><start_date>21.10.2018</start_date><end_date>21.11.2018</end_date></request><orders type="list"/></portmoneresult>
+    http_version: 
+  recorded_at: Wed, 21 Nov 2018 12:42:10 GMT
+recorded_with: VCR 2.9.3
