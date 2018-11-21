@@ -1,14 +1,16 @@
 class Portmone::Responses::OrderStatus < Portmone::Responses::BaseResponse
+  TIMEZONE = 'Europe/Kiev'.freeze
+
   def bill_date
     Date.parse(order['bill_date'])
   end
 
   def pay_date
-    ActiveSupport::TimeZone['Europe/Kiev'].parse(order['pay_date'])
+    ActiveSupport::TimeZone[TIMEZONE].parse(order['pay_date'])
   end
 
   def pay_order_date
-    ActiveSupport::TimeZone['Europe/Kiev'].parse(order['pay_order_date']) rescue nil
+    ActiveSupport::TimeZone[TIMEZONE].parse(order['pay_order_date']) rescue nil
   end
 
   def bill_amount
