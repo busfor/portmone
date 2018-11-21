@@ -1,0 +1,65 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://www.portmone.com.ua/gateway/
+    body:
+      encoding: UTF-8
+      string: lang=ru&login=SHP_BUSFOR2&method=result&password=11111111&payee_id=16336&shop_order_number=payment_id-1
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 21 Nov 2018 12:42:10 GMT
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '738'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=qd89hinhdua21jlo1gsek76r31; path=/; secure
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHBvcnRt
+        b25lcmVzdWx0IGxhbmc9InJ1Ij48cmVxdWVzdD48cGF5ZWVfaWQ+MTYzMzY8
+        L3BheWVlX2lkPjxzaG9wX29yZGVyX251bWJlcj5wYXltZW50X2lkLTE8L3No
+        b3Bfb3JkZXJfbnVtYmVyPjxzdGF0dXM+JTwvc3RhdHVzPjxzdGFydF9kYXRl
+        PjIxLjEwLjIwMTg8L3N0YXJ0X2RhdGU+PGVuZF9kYXRlPjIxLjExLjIwMTg8
+        L2VuZF9kYXRlPjwvcmVxdWVzdD48b3JkZXJzIHR5cGU9Imxpc3QiPjxvcmRl
+        cj48c2hvcF9iaWxsX2lkPjQzMjcyMjM1Mjwvc2hvcF9iaWxsX2lkPjxzaG9w
+        X29yZGVyX251bWJlcj5wYXltZW50X2lkLTE8L3Nob3Bfb3JkZXJfbnVtYmVy
+        PjxkZXNjcmlwdGlvbj7QmtC40LXQsi3Qm9GM0LLQvtCyPC9kZXNjcmlwdGlv
+        bj48YmlsbF9kYXRlPjIxLjExLjIwMTg8L2JpbGxfZGF0ZT48cGF5X2RhdGU+
+        MjEuMTEuMjAxOCAxMDo1NDo0MjwvcGF5X2RhdGU+PHBheV9vcmRlcl9kYXRl
+        PjwvcGF5X29yZGVyX2RhdGU+PGJpbGxfYW1vdW50PjUwPC9iaWxsX2Ftb3Vu
+        dD48YXV0aF9jb2RlPlRFU1RQTTwvYXV0aF9jb2RlPjxzdGF0dXM+UkVKRUNU
+        RUQ8L3N0YXR1cz48YXR0cmlidXRlMT48L2F0dHJpYnV0ZTE+PGF0dHJpYnV0
+        ZTI+PC9hdHRyaWJ1dGUyPjxlcnJvcl9jb2RlPjA8L2Vycm9yX2NvZGU+PGVy
+        cm9yX21lc3NhZ2U+PC9lcnJvcl9tZXNzYWdlPjwvb3JkZXI+PC9vcmRlcnM+
+        PC9wb3J0bW9uZXJlc3VsdD4K
+    http_version: 
+  recorded_at: Wed, 21 Nov 2018 12:42:10 GMT
+recorded_with: VCR 2.9.3
