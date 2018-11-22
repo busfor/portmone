@@ -10,16 +10,16 @@ module Portmone
       @logger = debug ? Logger.new(STDOUT) : Logger.new(File.open(File::NULL, 'w'))
     end
 
-    def generate_url(shop_order_number:, amount:, route_name:, callback_url:, locale:, authorize_only: true)
+    def generate_url(shop_order_number:, amount:, description:, return_url:, locale:, authorize_only: true)
       method nil
       response Portmone::Responses::GenerateURL
 
       send_request(
         shop_order_number: shop_order_number,
         bill_amount: format_amount(amount),
-        description: route_name,
-        success_url: callback_url,
-        failure_url: callback_url,
+        description: description,
+        success_url: return_url,
+        failure_url: return_url,
         encoding: 'utf-8',
         preauth_flag: authorize_only ? 'Y' : 'N'
       )

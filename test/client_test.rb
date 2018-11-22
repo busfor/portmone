@@ -9,7 +9,6 @@ describe Portmone::Client do
       locale: 'ru',
       login: 'SHP_BUSFOR2',
       password: '11111111',
-      debug: true
     )
   end
 
@@ -19,8 +18,8 @@ describe Portmone::Client do
         response = @client.generate_url(
           shop_order_number: 'payment_id-1',
           amount: Money.new(5000, 'UAH'),
-          route_name: 'Киев-Львов',
-          callback_url: 'httsp://example.com',
+          description: 'Киев-Львов',
+          return_url: 'httsp://example.com',
           locale: 'ru'
         )
 
@@ -38,12 +37,12 @@ describe Portmone::Client do
         assert_equal 'Киев-Львов', response.description
         assert_equal Date.parse('21.11.2018'), response.bill_date
         assert_equal Time.new(2018, 11, 21, 10, 54, 42,'+02:00'), response.pay_date
-        assert_equal nil, response.pay_order_date
+        assert_nil response.pay_order_date
         assert_equal Money.new(5000, 'UAH'), response.bill_amount
         assert_equal 'TESTPM', response.auth_code
         assert_equal 'REJECTED', response.status
         assert_equal '0', response.error_code
-        assert_equal nil, response.error_message
+        assert_nil response.error_message
       end
     end
 
@@ -64,7 +63,7 @@ describe Portmone::Client do
         assert_equal 'Киев-Львов', response.description
         assert_equal Date.parse('21.11.2018'), response.bill_date
         assert_equal Time.new(2018, 11, 21, 0, 0, 0,'+02:00'), response.pay_date
-        assert_equal nil, response.pay_order_date
+        assert_nil response.pay_order_date
         assert_equal Money.new(5000, 'UAH'), response.bill_amount
         assert_equal 'TESTPM', response.auth_code
         assert_equal 'REJECTED', response.status
@@ -94,12 +93,11 @@ describe Portmone::Client do
     it "returnes valid response if success" do
       VCR.use_cassette('charge_success') do
         response = @client.charge(432783653, Money.new(5000, 'UAH'))
-        binding.pry
         assert_equal '432783653', response.shop_bill_id
         assert_equal 'Киев-Львов', response.description
         assert_equal Date.parse('21.11.2018'), response.bill_date
         assert_equal Time.new(2018, 11, 21, 0, 0, 0,'+02:00'), response.pay_date
-        assert_equal nil, response.pay_order_date
+        assert_nil response.pay_order_date
         assert_equal Money.new(5000, 'UAH'), response.bill_amount
         assert_equal 'TESTPM', response.auth_code
         assert_equal 'PAYED', response.status
