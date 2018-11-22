@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'portmone/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'portmove'
+  spec.name          = 'portmone'
   spec.version       = Portmone::VERSION
   spec.authors       = ['Alexander Sviridov']
   spec.email         = ['alexander.sviridiv@gmail.com']
