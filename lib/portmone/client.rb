@@ -10,7 +10,7 @@ module Portmone
       @logger = debug ? Logger.new(STDOUT) : Logger.new(File.open(File::NULL, 'w'))
     end
 
-    def generate_url(shop_order_number:, amount:, description:, return_url:, locale:, authorize_only: true)
+    def generate_url(shop_order_number:, amount:, description:, return_url:, authorize_only: true)
       method nil
       response Portmone::Responses::GenerateURL
 

@@ -19,8 +19,7 @@ describe Portmone::Client do
           shop_order_number: 'payment_id-1',
           amount: Money.new(5000, 'UAH'),
           description: 'Киев-Львов',
-          return_url: 'httsp://example.com',
-          locale: 'ru'
+          return_url: 'httsp://example.com'
         )
 
         assert response.success?
