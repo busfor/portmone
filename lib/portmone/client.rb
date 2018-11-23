@@ -26,7 +26,7 @@ module Portmone
     end
 
     def order_status(order_id)
-      response Portmone::Responses::ReportOrderStatus
+      response Portmone::Responses::OrderStatus
       generic_report(order_id: order_id)
     end
 
@@ -42,7 +42,7 @@ module Portmone
 
     def refund(order_id, amount:)
       method 'return'
-      response Portmone::Responses::OrderStatus
+      response Portmone::Responses::RefundOrderStatus
       send_signed_request(
         shop_bill_id: order_id,
         return_amount: format_amount(amount),

@@ -114,4 +114,31 @@ describe Portmone::Client do
       end
     end
   end
+
+  describe 'refund' do
+    it "returnes valid response if success" do
+      VCR.use_cassette('refund_success') do
+        response = @client.refund(433202357, amount: Money.new(5000, 'UAH'))
+        assert_equal '432783653', response.shop_bill_id
+        assert_equal 'Киев-Львов', response.description
+        assert_equal Date.parse('21.11.2018'), response.bill_date
+        assert_equal Time.new(2018, 11, 21, 0, 0, 0,'+02:00'), response.pay_date
+        assert_nil response.pay_order_date
+        assert_equal Money.new(5000, 'UAH'), response.bill_amount
+        assert_equal 'TESTPM', response.auth_code
+        assert_equal 'PAYED', response.status
+        assert_equal '0', response.error_code
+        assert_equal '', response.error_message
+      end
+    end
+
+    it "returnes valid response if order cannot be refunded" do
+      VCR.use_cassette('refund_error') do
+        response = @client.refund(433200620, amount: Money.new(5000, 'UAH'))
+        refute response.success?
+        assert_equal '5', response.error_code
+        assert_equal 'По данному счету не допускается выполнение подтверждения блокировки средств. [статус=REJECTED]', response.error_message
+      end
+    end
+  end
 end

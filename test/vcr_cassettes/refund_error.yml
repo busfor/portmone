@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://www.portmone.com.ua/gateway/
+    body:
+      encoding: UTF-8
+      string: action=set_paid&lang=ru&login=SHP_BUSFOR2&method=preauth&password=11111111&payee_id=16336&postauth_amount=50.0&shop_bill_id=433200620
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 23 Nov 2018 09:33:43 GMT
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '546'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=siqto7d5vjl5iqidkc5aasoda4; path=/; secure
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHBvcnRt
+        b25lcmVzdWx0IGxhbmc9InJ1Ij48cmVxdWVzdD48YWN0aW9uPnNldF9wYWlk
+        PC9hY3Rpb24+PGxhbmc+cnU8L2xhbmc+PGxvZ2luPlNIUF9CVVNGT1IyPC9s
+        b2dpbj48bWV0aG9kPnByZWF1dGg8L21ldGhvZD48cGFzc3dvcmQ+KioqKioq
+        Kio8L3Bhc3N3b3JkPjxwb3N0YXV0aF9hbW91bnQ+NTAuMDwvcG9zdGF1dGhf
+        YW1vdW50PjxzaG9wX2JpbGxfaWQ+NDMzMjAwNjIwPC9zaG9wX2JpbGxfaWQ+
+        PC9yZXF1ZXN0PjxvcmRlcj48ZXJyb3JfY29kZT41PC9lcnJvcl9jb2RlPjxl
+        cnJvcl9tZXNzYWdlPjwhW0NEQVRBW9Cf0L4g0LTQsNC90L3QvtC80YMg0YHR
+        h9C10YLRgyDQvdC1INC00L7Qv9GD0YHQutCw0LXRgtGB0Y8g0LLRi9C/0L7Q
+        u9C90LXQvdC40LUg0L/QvtC00YLQstC10YDQttC00LXQvdC40Y8g0LHQu9C+
+        0LrQuNGA0L7QstC60Lgg0YHRgNC10LTRgdGC0LIuIFvRgdGC0LDRgtGD0YE9
+        UEFZRURdXV0+PC9lcnJvcl9tZXNzYWdlPjwvb3JkZXI+PC9wb3J0bW9uZXJl
+        c3VsdD4K
+    http_version: 
+  recorded_at: Fri, 23 Nov 2018 09:33:54 GMT
+recorded_with: VCR 2.9.3

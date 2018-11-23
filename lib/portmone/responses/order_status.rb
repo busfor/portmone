@@ -37,6 +37,12 @@ class Portmone::Responses::OrderStatus < Portmone::Responses::BaseResponse
 private
 
   def order
-    @xml_data.dig('portmoneresult', 'order')
+    data = @xml_data.dig('portmoneresult', 'orders', 'order') || @xml_data.dig('portmoneresult', 'order')
+
+    if data.is_a?(Hash)
+      data
+    else
+      data.last
+    end
   end
 end
