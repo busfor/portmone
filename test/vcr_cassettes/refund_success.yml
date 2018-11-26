@@ -5,7 +5,7 @@ http_interactions:
     uri: https://www.portmone.com.ua/gateway/
     body:
       encoding: UTF-8
-      string: lang=ru&login=SHP_BUSFOR2&method=return&password=11111111&payee_id=16336&return_amount=50.0&shop_bill_id=433202357
+      string: lang=ru&login=SHP_BUSFOR2&method=return&password=11111111&payee_id=16336&return_amount=50.0&shop_bill_id=433831969
     headers:
       User-Agent:
       - Faraday v0.13.1
@@ -23,28 +23,28 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 23 Nov 2018 09:39:24 GMT
+      - Mon, 26 Nov 2018 12:52:23 GMT
       Content-Type:
-      - text/html; charset=utf-8
-      Transfer-Encoding:
-      - chunked
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '710'
       Connection:
       - keep-alive
+      Set-Cookie:
+      - PHPSESSID=v68cj0jmt30iauqg727u7c8104; path=/; secure
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
       Strict-Transport-Security:
       - max-age=31536000
     body:
-      encoding: ASCII-8BIT
-      string: "<html>\r\n    <head>\r\n        <title>Portmone Gateway | Redirecting...</title>\r\n\r\n
-        \       <meta http-equiv=\"Content-Type\" content=\"text/html; charsetutf-8\"
-        />\r\n    </head>\r\n    <body>\r\n        <form id=\"return-form\" action=\"https://www.portmone.com.ua/r3/secure/gate/return\"
-        method=\"post\"><input type=\"hidden\" name=\"lang\" value=\"ru\" /><input
-        type=\"hidden\" name=\"login\" value=\"SHP_BUSFOR2\" /><input type=\"hidden\"
-        name=\"method\" value=\"return\" /><input type=\"hidden\" name=\"password\"
-        value=\"11111111\" /><input type=\"hidden\" name=\"payee_id\" value=\"16336\"
-        /><input type=\"hidden\" name=\"return_amount\" value=\"50.0\" /><input type=\"hidden\"
-        name=\"shop_bill_id\" value=\"433202357\" />\r\n        </form>\r\n\r\n        <script
-        type=\"text/javascript\">\r\n            document.getElementById(\"return-form\").submit();\r\n
-        \       </script>\r\n    </body>\r\n</html>"
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="utf-8"?>
+        <portmoneresult lang="ru"><request><lang>ru</lang><login>SHP_BUSFOR2</login><method>return</method><password>********</password><return_amount>50.0</return_amount><shop_bill_id>433831969</shop_bill_id></request><order><shop_bill_id>433832114</shop_bill_id><shop_order_number>payment_id-12</shop_order_number><description><![CDATA[]]></description><bill_date>26.11.2018</bill_date><pay_date>26.11.2018</pay_date><pay_order_date></pay_order_date><bill_amount>-50</bill_amount><auth_code>TESTPM</auth_code><status>RETURN</status><attribute1></attribute1><attribute2></attribute2><error_code>0</error_code><error_message><![CDATA[]]></error_message></order></portmoneresult>
     http_version: 
-  recorded_at: Fri, 23 Nov 2018 09:39:35 GMT
+  recorded_at: Mon, 26 Nov 2018 12:52:26 GMT
 recorded_with: VCR 2.9.3

@@ -41,7 +41,7 @@ private
 
     if data.is_a?(Hash)
       data
-    else
+    elsif data.is_a?(Array)
       data.last
     end
   end

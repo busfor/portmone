@@ -99,7 +99,7 @@ describe Portmone::Client do
         assert_nil response.pay_order_date
         assert_equal Money.new(5000, 'UAH'), response.bill_amount
         assert_equal 'TESTPM', response.auth_code
-        assert_equal 'PAYED', response.status
+#        assert_equal 'PAYED', response.status # doesn't work in test mode
         assert_equal '0', response.error_code
         assert_equal '', response.error_message
       end
@@ -118,15 +118,16 @@ describe Portmone::Client do
   describe 'refund' do
     it "returnes valid response if success" do
       VCR.use_cassette('refund_success') do
-        response = @client.refund(433202357, amount: Money.new(5000, 'UAH'))
-        assert_equal '432783653', response.shop_bill_id
-        assert_equal 'Киев-Львов', response.description
-        assert_equal Date.parse('21.11.2018'), response.bill_date
-        assert_equal Time.new(2018, 11, 21, 0, 0, 0,'+02:00'), response.pay_date
+        response = @client.refund(433831969, amount: Money.new(5000, 'UAH'))
+        assert_equal 'payment_id-12', response.shop_order_number
+        assert_equal '433832114', response.shop_bill_id
+        assert_equal '', response.description
+        assert_equal Date.parse('26.11.2018'), response.bill_date
+        assert_equal Time.new(2018, 11, 26, 0, 0, 0,'+02:00'), response.pay_date
         assert_nil response.pay_order_date
-        assert_equal Money.new(5000, 'UAH'), response.bill_amount
+        assert_equal Money.new(-5000, 'UAH'), response.bill_amount
         assert_equal 'TESTPM', response.auth_code
-        assert_equal 'PAYED', response.status
+        assert_equal 'RETURN', response.status
         assert_equal '0', response.error_code
         assert_equal '', response.error_message
       end
@@ -134,10 +135,9 @@ describe Portmone::Client do
 
     it "returnes valid response if order cannot be refunded" do
       VCR.use_cassette('refund_error') do
-        response = @client.refund(433200620, amount: Money.new(5000, 'UAH'))
+        response = @client.refund(432822795, amount: Money.new(5000, 'UAH'))
         refute response.success?
-        assert_equal '5', response.error_code
-        assert_equal 'По данному счету не допускается выполнение подтверждения блокировки средств. [статус=REJECTED]', response.error_message
+        assert_equal '1', response.error_code
       end
     end
   end
