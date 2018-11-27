@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 26 Nov 2018 12:44:33 GMT
+      - Tue, 27 Nov 2018 13:13:33 GMT
       Content-Type:
       - text/xml; charset=utf-8
       Content-Length:
@@ -31,7 +31,7 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=r2b20n661gal5ghl0otacdhmg0; path=/; secure
+      - PHPSESSID=mjjh645anip1mr0cf972iafdb1; path=/; secure
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Cache-Control:
@@ -41,17 +41,10 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
     body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHBvcnRt
-        b25lcmVzdWx0IGxhbmc9InJ1Ij48cmVxdWVzdD48bGFuZz5ydTwvbGFuZz48
-        bG9naW4+U0hQX0JVU0ZPUjI8L2xvZ2luPjxtZXRob2Q+cmV0dXJuPC9tZXRo
-        b2Q+PHBhc3N3b3JkPioqKioqKioqPC9wYXNzd29yZD48cmV0dXJuX2Ftb3Vu
-        dD41MC4wPC9yZXR1cm5fYW1vdW50PjxzaG9wX2JpbGxfaWQ+NDMyODIyNzk1
-        PC9zaG9wX2JpbGxfaWQ+PC9yZXF1ZXN0PjxvcmRlcj48ZXJyb3JfY29kZT4x
-        PC9lcnJvcl9jb2RlPjxlcnJvcl9tZXNzYWdlPjwhW0NEQVRBW09SQS0yMDAw
-        MTog0KDQsNGF0YPQvdC+0Log0L3QtSDQvtC/0LvQsNGH0LXQvdC+Ll1dPjwv
-        ZXJyb3JfbWVzc2FnZT48L29yZGVyPjwvcG9ydG1vbmVyZXN1bHQ+Cg==
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="utf-8"?>
+        <portmoneresult lang="ru"><request><lang>ru</lang><login>SHP_BUSFOR2</login><method>return</method><password>********</password><return_amount>50.0</return_amount><shop_bill_id>432822795</shop_bill_id></request><order><error_code>1</error_code><error_message><![CDATA[ORA-20001: Рахунок не оплачено.]]></error_message></order></portmoneresult>
     http_version: 
-  recorded_at: Mon, 26 Nov 2018 12:44:36 GMT
+  recorded_at: Tue, 27 Nov 2018 13:13:36 GMT
 recorded_with: VCR 2.9.3

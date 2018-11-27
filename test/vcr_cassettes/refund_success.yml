@@ -5,7 +5,7 @@ http_interactions:
     uri: https://www.portmone.com.ua/gateway/
     body:
       encoding: UTF-8
-      string: lang=ru&login=SHP_BUSFOR2&method=return&password=11111111&payee_id=16336&return_amount=50.0&shop_bill_id=433831969
+      string: lang=ru&login=SHP_BUSFOR2&method=return&password=11111111&payee_id=16336&return_amount=50.0&shop_bill_id=433831730
     headers:
       User-Agent:
       - Faraday v0.13.1
@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 26 Nov 2018 12:52:23 GMT
+      - Tue, 27 Nov 2018 13:12:45 GMT
       Content-Type:
       - text/xml; charset=utf-8
       Content-Length:
@@ -31,7 +31,7 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=v68cj0jmt30iauqg727u7c8104; path=/; secure
+      - PHPSESSID=kkgs78eu9e3b8l5l6nrlo15nj7; path=/; secure
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Cache-Control:
@@ -44,7 +44,7 @@ http_interactions:
       encoding: UTF-8
       string: |
         <?xml version="1.0" encoding="utf-8"?>
-        <portmoneresult lang="ru"><request><lang>ru</lang><login>SHP_BUSFOR2</login><method>return</method><password>********</password><return_amount>50.0</return_amount><shop_bill_id>433831969</shop_bill_id></request><order><shop_bill_id>433832114</shop_bill_id><shop_order_number>payment_id-12</shop_order_number><description><![CDATA[]]></description><bill_date>26.11.2018</bill_date><pay_date>26.11.2018</pay_date><pay_order_date></pay_order_date><bill_amount>-50</bill_amount><auth_code>TESTPM</auth_code><status>RETURN</status><attribute1></attribute1><attribute2></attribute2><error_code>0</error_code><error_message><![CDATA[]]></error_message></order></portmoneresult>
+        <portmoneresult lang="ru"><request><lang>ru</lang><login>SHP_BUSFOR2</login><method>return</method><password>********</password><return_amount>50.0</return_amount><shop_bill_id>433831730</shop_bill_id></request><order><shop_bill_id>434053752</shop_bill_id><shop_order_number>payment_id-11</shop_order_number><description><![CDATA[]]></description><bill_date>27.11.2018</bill_date><pay_date>27.11.2018</pay_date><pay_order_date></pay_order_date><bill_amount>-50</bill_amount><auth_code>TESTPM</auth_code><status>RETURN</status><attribute1></attribute1><attribute2></attribute2><error_code>0</error_code><error_message><![CDATA[]]></error_message></order></portmoneresult>
     http_version: 
-  recorded_at: Mon, 26 Nov 2018 12:52:26 GMT
+  recorded_at: Tue, 27 Nov 2018 13:12:47 GMT
 recorded_with: VCR 2.9.3

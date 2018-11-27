@@ -132,12 +132,12 @@ describe Portmone::Client do
   describe 'refund' do
     it "returnes valid response if success" do
       VCR.use_cassette('refund_success') do
-        response = @client.refund(433831969, amount: Money.new(5000, 'UAH'))
-        assert_equal 'payment_id-12', response.shop_order_number
-        assert_equal '433832114', response.shop_bill_id
+        response = @client.refund(433831730, amount: Money.new(5000, 'UAH'))
+        assert_equal 'payment_id-11', response.shop_order_number
+        assert_equal '434053752', response.shop_bill_id
         assert_equal '', response.description
-        assert_equal Date.parse('26.11.2018'), response.bill_date
-        assert_equal Time.new(2018, 11, 26, 0, 0, 0,'+02:00'), response.pay_date
+        assert_equal Date.parse('27.11.2018'), response.bill_date
+        assert_equal Time.new(2018, 11, 27, 0, 0, 0,'+02:00'), response.pay_date
         assert_nil response.pay_order_date
         assert_equal Money.new(-5000, 'UAH'), response.bill_amount
         assert_equal 'TESTPM', response.auth_code
@@ -152,6 +152,7 @@ describe Portmone::Client do
         response = @client.refund(432822795, amount: Money.new(5000, 'UAH'))
         refute response.success?
         assert_equal '1', response.error_code
+        assert_equal "ORA-20001: Рахунок не оплачено.", response.error_message
       end
     end
   end
