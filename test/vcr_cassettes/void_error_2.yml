@@ -5,7 +5,7 @@ http_interactions:
     uri: https://www.portmone.com.ua/gateway/
     body:
       encoding: UTF-8
-      string: action=reject&lang=ru&login=SHP_BUSFOR2&method=preauth&password=11111111&payee_id=16336&post_auth_amount=0.0&shop_bill_id=99999
+      string: action=reject&lang=ru&login=SHP_BUSFOR2&method=preauth&password=11111111&payee_id=16336&postauth_amount=0.0&shop_bill_id=99999
     headers:
       User-Agent:
       - Faraday v0.13.1
@@ -23,15 +23,15 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 21 Nov 2018 13:02:11 GMT
+      - Tue, 27 Nov 2018 13:03:19 GMT
       Content-Type:
       - text/xml; charset=utf-8
       Content-Length:
-      - '543'
+      - '581'
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=hb1tg3t0d22s1ftcq5df41q375; path=/; secure
+      - PHPSESSID=0fiqu3ie83elfp78q7a412hct5; path=/; secure
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Cache-Control:
@@ -41,21 +41,10 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
     body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHBvcnRt
-        b25lcmVzdWx0IGxhbmc9InJ1Ij48cmVxdWVzdD48YWN0aW9uPnJlamVjdDwv
-        YWN0aW9uPjxsYW5nPnJ1PC9sYW5nPjxsb2dpbj5TSFBfQlVTRk9SMjwvbG9n
-        aW4+PG1ldGhvZD5wcmVhdXRoPC9tZXRob2Q+PHBhc3N3b3JkPioqKioqKioq
-        PC9wYXNzd29yZD48c2hvcF9iaWxsX2lkPjk5OTk5PC9zaG9wX2JpbGxfaWQ+
-        PC9yZXF1ZXN0PjxvcmRlcj48ZXJyb3JfY29kZT42PC9lcnJvcl9jb2RlPjxl
-        cnJvcl9tZXNzYWdlPjwhW0NEQVRBW9Ce0YjQuNCx0LrQsCDQv9GA0Lgg0LLR
-        i9C/0L7Qu9C90LXQvdC40Lgg0L7RgtC80LXQvdGLINCx0LvQvtC60LjRgNC+
-        0LLQutC4INGB0YDQtdC00YHRgtCyINC/0L4g0YHRh9C10YLRgyBbU0hPUF9C
-        SUxMX0lEID0gOTk5OTldLiBPUkEtMjAwMDE6INCX0LDQutCw0Lcg0YEg0YPQ
-        utCw0LfQsNC90L3Ri9C8IElEINC90LUg0L3QsNC50LTQtdC9LiBbSUQ9OTk5
-        OTldXV0+PC9lcnJvcl9tZXNzYWdlPjwvb3JkZXI+PC9wb3J0bW9uZXJlc3Vs
-        dD4K
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="utf-8"?>
+        <portmoneresult lang="ru"><request><action>reject</action><lang>ru</lang><login>SHP_BUSFOR2</login><method>preauth</method><password>********</password><postauth_amount>0.0</postauth_amount><shop_bill_id>99999</shop_bill_id></request><order><error_code>6</error_code><error_message><![CDATA[Ошибка при выполнении отмены блокировки средств по счету [SHOP_BILL_ID = 99999]. ORA-20001: Заказ с указанным ID не найден. [ID=99999]]]></error_message></order></portmoneresult>
     http_version: 
-  recorded_at: Wed, 21 Nov 2018 13:02:11 GMT
+  recorded_at: Tue, 27 Nov 2018 13:03:21 GMT
 recorded_with: VCR 2.9.3

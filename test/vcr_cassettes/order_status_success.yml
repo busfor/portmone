@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 26 Nov 2018 12:35:12 GMT
+      - Tue, 27 Nov 2018 12:53:11 GMT
       Content-Type:
       - text/xml; charset=utf-8
       Content-Length:
@@ -31,7 +31,7 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=4371muo75ag7ert2jdj20sf3p6; path=/; secure
+      - PHPSESSID=0t9p08ortaeaf116tqprm8sni2; path=/; secure
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Cache-Control:
@@ -41,25 +41,10 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
     body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHBvcnRt
-        b25lcmVzdWx0IGxhbmc9InJ1Ij48cmVxdWVzdD48cGF5ZWVfaWQ+MTYzMzY8
-        L3BheWVlX2lkPjxzaG9wX29yZGVyX251bWJlcj5wYXltZW50X2lkLTE8L3No
-        b3Bfb3JkZXJfbnVtYmVyPjxzdGF0dXM+JTwvc3RhdHVzPjxzdGFydF9kYXRl
-        PjI2LjEwLjIwMTg8L3N0YXJ0X2RhdGU+PGVuZF9kYXRlPjI2LjExLjIwMTg8
-        L2VuZF9kYXRlPjwvcmVxdWVzdD48b3JkZXJzIHR5cGU9Imxpc3QiPjxvcmRl
-        cj48c2hvcF9iaWxsX2lkPjQzMjcyMjM1Mjwvc2hvcF9iaWxsX2lkPjxzaG9w
-        X29yZGVyX251bWJlcj5wYXltZW50X2lkLTE8L3Nob3Bfb3JkZXJfbnVtYmVy
-        PjxkZXNjcmlwdGlvbj7QmtC40LXQsi3Qm9GM0LLQvtCyPC9kZXNjcmlwdGlv
-        bj48YmlsbF9kYXRlPjIxLjExLjIwMTg8L2JpbGxfZGF0ZT48cGF5X2RhdGU+
-        MjEuMTEuMjAxOCAxMDo1NDo0MjwvcGF5X2RhdGU+PHBheV9vcmRlcl9kYXRl
-        PjwvcGF5X29yZGVyX2RhdGU+PGJpbGxfYW1vdW50PjUwPC9iaWxsX2Ftb3Vu
-        dD48YXV0aF9jb2RlPlRFU1RQTTwvYXV0aF9jb2RlPjxzdGF0dXM+UkVKRUNU
-        RUQ8L3N0YXR1cz48YXR0cmlidXRlMT48L2F0dHJpYnV0ZTE+PGF0dHJpYnV0
-        ZTI+PC9hdHRyaWJ1dGUyPjxlcnJvcl9jb2RlPjA8L2Vycm9yX2NvZGU+PGVy
-        cm9yX21lc3NhZ2U+PC9lcnJvcl9tZXNzYWdlPjwvb3JkZXI+PC9vcmRlcnM+
-        PC9wb3J0bW9uZXJlc3VsdD4K
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="utf-8"?>
+        <portmoneresult lang="ru"><request><payee_id>16336</payee_id><shop_order_number>payment_id-1</shop_order_number><status>%</status><start_date>27.10.2018</start_date><end_date>27.11.2018</end_date></request><orders type="list"><order><shop_bill_id>432722352</shop_bill_id><shop_order_number>payment_id-1</shop_order_number><description>Киев-Львов</description><bill_date>21.11.2018</bill_date><pay_date>21.11.2018 10:54:42</pay_date><pay_order_date></pay_order_date><bill_amount>50</bill_amount><auth_code>TESTPM</auth_code><status>REJECTED</status><attribute1></attribute1><attribute2></attribute2><error_code>0</error_code><error_message></error_message></order></orders></portmoneresult>
     http_version: 
-  recorded_at: Mon, 26 Nov 2018 12:35:15 GMT
+  recorded_at: Tue, 27 Nov 2018 12:53:13 GMT
 recorded_with: VCR 2.9.3

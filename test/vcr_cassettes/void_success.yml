@@ -5,7 +5,7 @@ http_interactions:
     uri: https://www.portmone.com.ua/gateway/
     body:
       encoding: UTF-8
-      string: action=reject&lang=ru&login=SHP_BUSFOR2&method=preauth&password=11111111&payee_id=16336&post_auth_amount=0.0&shop_bill_id=432781508
+      string: action=reject&lang=ru&login=SHP_BUSFOR2&method=preauth&password=11111111&payee_id=16336&postauth_amount=0.0&shop_bill_id=434051098
     headers:
       User-Agent:
       - Faraday v0.13.1
@@ -23,15 +23,15 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 21 Nov 2018 12:56:31 GMT
+      - Tue, 27 Nov 2018 13:01:31 GMT
       Content-Type:
       - text/xml; charset=utf-8
       Content-Length:
-      - '718'
+      - '757'
       Connection:
       - keep-alive
       Set-Cookie:
-      - PHPSESSID=fajp0phbjp7ngrqeft3meveh55; path=/; secure
+      - PHPSESSID=485ul1jph5qqn7898cbvk75r52; path=/; secure
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Cache-Control:
@@ -41,24 +41,10 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
     body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHBvcnRt
-        b25lcmVzdWx0IGxhbmc9InJ1Ij48cmVxdWVzdD48YWN0aW9uPnJlamVjdDwv
-        YWN0aW9uPjxsYW5nPnJ1PC9sYW5nPjxsb2dpbj5TSFBfQlVTRk9SMjwvbG9n
-        aW4+PG1ldGhvZD5wcmVhdXRoPC9tZXRob2Q+PHBhc3N3b3JkPioqKioqKioq
-        PC9wYXNzd29yZD48c2hvcF9iaWxsX2lkPjQzMjc4MTUwODwvc2hvcF9iaWxs
-        X2lkPjwvcmVxdWVzdD48b3JkZXI+PHNob3BfYmlsbF9pZD40MzI3ODE1MDg8
-        L3Nob3BfYmlsbF9pZD48c2hvcF9vcmRlcl9udW1iZXI+cGF5bWVudF9pZC0z
-        PC9zaG9wX29yZGVyX251bWJlcj48ZGVzY3JpcHRpb24+PCFbQ0RBVEFb0JrQ
-        uNC10LIt0JvRjNCy0L7Qsl1dPjwvZGVzY3JpcHRpb24+PGJpbGxfZGF0ZT4y
-        MS4xMS4yMDE4PC9iaWxsX2RhdGU+PHBheV9kYXRlPjIxLjExLjIwMTg8L3Bh
-        eV9kYXRlPjxwYXlfb3JkZXJfZGF0ZT48L3BheV9vcmRlcl9kYXRlPjxiaWxs
-        X2Ftb3VudD41MDwvYmlsbF9hbW91bnQ+PGF1dGhfY29kZT5URVNUUE08L2F1
-        dGhfY29kZT48c3RhdHVzPlJFSkVDVEVEPC9zdGF0dXM+PGF0dHJpYnV0ZTE+
-        PC9hdHRyaWJ1dGUxPjxhdHRyaWJ1dGUyPjwvYXR0cmlidXRlMj48ZXJyb3Jf
-        Y29kZT4wPC9lcnJvcl9jb2RlPjxlcnJvcl9tZXNzYWdlPjwhW0NEQVRBW11d
-        PjwvZXJyb3JfbWVzc2FnZT48L29yZGVyPjwvcG9ydG1vbmVyZXN1bHQ+Cg==
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="utf-8"?>
+        <portmoneresult lang="ru"><request><action>reject</action><lang>ru</lang><login>SHP_BUSFOR2</login><method>preauth</method><password>********</password><postauth_amount>0.0</postauth_amount><shop_bill_id>434051098</shop_bill_id></request><order><shop_bill_id>434051098</shop_bill_id><shop_order_number>payment_id-12</shop_order_number><description><![CDATA[Киев-Львов]]></description><bill_date>27.11.2018</bill_date><pay_date>27.11.2018</pay_date><pay_order_date></pay_order_date><bill_amount>50</bill_amount><auth_code>TESTPM</auth_code><status>REJECTED</status><attribute1></attribute1><attribute2></attribute2><error_code>0</error_code><error_message><![CDATA[]]></error_message></order></portmoneresult>
     http_version: 
-  recorded_at: Wed, 21 Nov 2018 12:56:31 GMT
+  recorded_at: Tue, 27 Nov 2018 13:01:33 GMT
 recorded_with: VCR 2.9.3

@@ -1,25 +1,31 @@
 module Portmone
+  class Error < StandardError; end
+
   class Client
     BASE_URL = 'https://www.portmone.com.ua/gateway/'.freeze
 
-    def initialize(payee_id:, login:, password:, locale:, debug: false)
+    def initialize(payee_id:, login:, password:, locale:, currency:, logger: nil)
       @payee_id = payee_id
       @login = login
       @password = password
       @locale = locale
-      @logger = debug ? Logger.new(STDOUT) : Logger.new(File.open(File::NULL, 'w'))
+      @currency = currency
+      @logger = logger
     end
 
-    def generate_url(shop_order_number:, amount:, description:, return_url:, authorize_only: true)
+    def generate_url(shop_order_number:, amount:, description:, success_url:, failure_url:, authorize_only: true)
       method nil
       response Portmone::Responses::GenerateURL
+
+      raise "Wrong currency! (got #{amount.currency}, expected #{@currency})" unless amount.currency == @currency
 
       send_request(
         shop_order_number: shop_order_number,
         bill_amount: format_amount(amount),
+        bill_currency: @currency,
         description: description,
-        success_url: return_url,
-        failure_url: return_url,
+        success_url: success_url,
+        failure_url: failure_url,
         encoding: 'utf-8',
         preauth_flag: authorize_only ? 'Y' : 'N'
       )
@@ -105,13 +111,13 @@ module Portmone
         ).delete_if { |_, v| v.nil? }
       end
 
-      @response_klass.new(response)
+      @response_klass.new(response, currency: @currency)
     end
 
     def http_client
       @http_client ||= Faraday.new do |builder|
         builder.request :url_encoded
-        builder.response :logger, @logger, bodies: true
+        builder.response :logger, @logger, bodies: true if @logger
         builder.adapter Faraday.default_adapter
       end
     end

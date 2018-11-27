@@ -14,7 +14,7 @@ class Portmone::Responses::OrderStatus < Portmone::Responses::BaseResponse
   end
 
   def bill_amount
-    Money.new(order['bill_amount'].to_f * 100, 'UAH')
+    Money.from_amount(order['bill_amount'].to_f, @currency)
   end
 
   %i(shop_bill_id
