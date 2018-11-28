@@ -25,17 +25,27 @@ class Portmone::Responses::OrderStatus < Portmone::Responses::BaseResponse
   end
 
   def amount
-    transactions.select { |t| t.status != 'RETURN' }.last.try(:bill_amount)
+    transactions.select(&:paid?)
+                .map { |t| t.bill_amount }
+                .inject(:+) || transactions.first.bill_amount
   end
 
-  def reverse_amount
-    transactions.select { |t| t.status == 'RETURN' }
+  def reversed_amount
+    transactions.select(&:reversed?)
                 .map { |t| t.bill_amount }
                 .inject(:+) || 0
   end
 
   def actual_amount
-    amount + reverse_amount
+    amount + reversed_amount
+  end
+
+  def paid?
+    transactions.any?(&:paid?)
+  end
+
+  def reversed?
+    transactions.any?(&:reversed?)
   end
 
   def success?

@@ -72,7 +72,7 @@ describe Portmone::Client do
         response = @client.order_status('payment_id-15')
         assert_equal '434226706', response.order_id
         assert_equal Money.from_amount(41.00, 'UAH'), response.actual_amount
-        assert_equal Money.from_amount(-9.00, 'UAH'), response.reverse_amount
+        assert_equal Money.from_amount(-9.00, 'UAH'), response.reversed_amount
         assert_equal Money.from_amount(50.0, 'UAH'), response.amount
         assert_equal 'RETURN', response.status
         assert_equal '0', response.error_code
@@ -153,7 +153,7 @@ describe Portmone::Client do
         assert_equal Date.parse('27.11.2018'), response.bill_date
         assert_equal Time.new(2018, 11, 27, 0, 0, 0,'+02:00'), response.pay_time
         assert_nil response.pay_order_time
-        assert_equal Money.new(-5000, 'UAH'), response.reverse_amount
+        assert_equal Money.new(-5000, 'UAH'), response.reversed_amount
         assert_equal 'TESTPM', response.auth_code
         assert_equal 'RETURN', response.status
         assert_equal '0', response.error_code

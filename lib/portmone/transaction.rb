@@ -32,6 +32,14 @@ module Portmone
       data.dig('shop_bill_id')
     end
 
+    def paid?
+      status == 'PAYED' || status == 'PREAUTH'
+    end
+
+    def reversed?
+      status == 'RETURN'
+    end
+
     %i(shop_order_number
        description
        auth_code
