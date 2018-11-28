@@ -1,4 +1,13 @@
 class Portmone::Responses::OrderStatus < Portmone::Responses::BaseResponse
+  #
+  # статусы:
+  # CREATED - клиент перешел на страницу 3Ds
+  # PREAUTH - деньги успешно заблокированы на счету
+  # PAYED - деньги списаны
+  # REJECTED - платеж не удалось провести или отмена авторизации
+  # RETURN - успешный возврат
+  #
+ 
   %i(bill_date
      pay_time
      pay_order_time
@@ -15,14 +24,18 @@ class Portmone::Responses::OrderStatus < Portmone::Responses::BaseResponse
     end
   end
 
-  def bill_amount
-    if order.status == 'RETURN'
-      transactions.select { |t| t.status == 'PAYED' || t.status == 'RETURN' }
-                  .map { |t| t.bill_amount }
-                  .inject(:+)
-    else
-      order.bill_amount
-    end
+  def amount
+    transactions.select { |t| t.status != 'RETURN' }.last.try(:bill_amount)
+  end
+
+  def reverse_amount
+    transactions.select { |t| t.status == 'RETURN' }
+                .map { |t| t.bill_amount }
+                .inject(:+) || 0
+  end
+
+  def actual_amount
+    amount + reverse_amount
   end
 
   def success?
