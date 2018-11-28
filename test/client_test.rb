@@ -66,6 +66,18 @@ describe Portmone::Client do
         assert_nil response.error_code # no error from Portmone :( no order too
       end
     end
+
+    it "returnes valid response after partial refund" do
+      VCR.use_cassette('order_status_success_refund') do
+        response = @client.order_status('payment_id-15')
+        assert_equal '434226706', response.shop_bill_id
+        assert_equal Money.from_amount(41.00, 'UAH'), response.bill_amount
+        assert_equal 'RETURN', response.status
+        assert_equal '0', response.error_code
+        assert_nil response.error_message
+      end
+    end
+
   end
 
   describe 'void' do

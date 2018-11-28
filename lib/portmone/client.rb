@@ -4,12 +4,19 @@ module Portmone
   class Client
     BASE_URL = 'https://www.portmone.com.ua/gateway/'.freeze
 
-    def initialize(payee_id:, login:, password:, locale:, currency:, logger: nil)
+    def initialize(payee_id:,
+                   login:,
+                   password:,
+                   locale:,
+                   currency:,
+                   timezone: 'Europe/Kiev',
+                   logger: nil)
       @payee_id = payee_id
       @login = login
       @password = password
       @locale = locale
       @currency = currency
+      @timezone = timezone
       @logger = logger
     end
 
@@ -17,7 +24,6 @@ module Portmone
       method nil
       response Portmone::Responses::GenerateURL
 
-      raise "Wrong currency! (got #{amount.currency}, expected #{@currency})" unless amount.currency == @currency
 
       send_request(
         shop_order_number: shop_order_number,
@@ -72,11 +78,12 @@ module Portmone
     def generic_preauth_update(order_id:, action:, amount: nil)
       method 'preauth'
 
-      send_signed_request(
+      attrs = {
         shop_bill_id: order_id,
         action: action,
-        postauth_amount: format_amount(amount),
-      )
+      }
+      attrs[:postauth_amount] = format_amount(amount) if amount
+      send_signed_request(attrs)
     end
 
     def format_date(date)
@@ -84,6 +91,8 @@ module Portmone
     end
 
     def format_amount(amount)
+      raise "Wrong currency! (got #{amount.currency}, expected #{@currency})" unless amount.currency == @currency
+
       amount.to_f
     end
 
@@ -111,7 +120,7 @@ module Portmone
         ).delete_if { |_, v| v.nil? }
       end
 
-      @response_klass.new(response, currency: @currency)
+      @response_klass.new(response, currency: @currency, timezone: @timezone)
     end
 
     def http_client

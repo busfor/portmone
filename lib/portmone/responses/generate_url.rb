@@ -1,6 +1,6 @@
 class Portmone::Responses::GenerateURL < Portmone::Responses::BaseResponse
   def success?
-    location.present? && status == 302
+    location.present? && http_status == 302
   end
 
   def location
