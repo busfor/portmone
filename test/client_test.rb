@@ -46,11 +46,11 @@ describe Portmone::Client do
     it "returnes valid response if success" do
       VCR.use_cassette('order_status_success') do
         response = @client.order_status('payment_id-1')
-        assert_equal '432722352', response.shop_bill_id
+        assert_equal '432722352', response.order_id
         assert_equal 'Киев-Львов', response.description
         assert_equal Date.parse('21.11.2018'), response.bill_date
-        assert_equal Time.new(2018, 11, 21, 10, 54, 42,'+02:00'), response.pay_date
-        assert_nil response.pay_order_date
+        assert_equal Time.new(2018, 11, 21, 10, 54, 42,'+02:00'), response.pay_time
+        assert_nil response.pay_order_time
         assert_equal Money.new(5000, 'UAH'), response.bill_amount
         assert_equal 'TESTPM', response.auth_code
         assert_equal 'REJECTED', response.status
@@ -70,7 +70,7 @@ describe Portmone::Client do
     it "returnes valid response after partial refund" do
       VCR.use_cassette('order_status_success_refund') do
         response = @client.order_status('payment_id-15')
-        assert_equal '434226706', response.shop_bill_id
+        assert_equal '434226706', response.order_id
         assert_equal Money.from_amount(41.00, 'UAH'), response.bill_amount
         assert_equal 'RETURN', response.status
         assert_equal '0', response.error_code
@@ -84,11 +84,11 @@ describe Portmone::Client do
     it "returnes valid response if success" do
       VCR.use_cassette('void_success') do
         response = @client.void(434051098)
-        assert_equal '434051098', response.shop_bill_id
+        assert_equal '434051098', response.order_id
         assert_equal 'Киев-Львов', response.description
         assert_equal Date.parse('27.11.2018'), response.bill_date
-        assert_equal Time.new(2018, 11, 27, 0, 0, 0,'+02:00'), response.pay_date
-        assert_nil response.pay_order_date
+        assert_equal Time.new(2018, 11, 27, 0, 0, 0,'+02:00'), response.pay_time
+        assert_nil response.pay_order_time
         assert_equal Money.new(5000, 'UAH'), response.bill_amount
         assert_equal 'TESTPM', response.auth_code
         assert_equal 'REJECTED', response.status
@@ -118,11 +118,11 @@ describe Portmone::Client do
     it "returnes valid response if success" do
       VCR.use_cassette('charge_success') do
         response = @client.charge(434052769, Money.new(5000, 'UAH'))
-        assert_equal '434052769', response.shop_bill_id
+        assert_equal '434052769', response.order_id
         assert_equal 'Киев-Львов', response.description
         assert_equal Date.parse('27.11.2018'), response.bill_date
-        assert_equal Time.new(2018, 11, 27, 0, 0, 0,'+02:00'), response.pay_date
-        assert_nil response.pay_order_date
+        assert_equal Time.new(2018, 11, 27, 0, 0, 0,'+02:00'), response.pay_time
+        assert_nil response.pay_order_time
         assert_equal Money.new(5000, 'UAH'), response.bill_amount
         assert_equal 'TESTPM', response.auth_code
         assert_equal 'PAYED', response.status # doesn't work in test mode
@@ -146,11 +146,11 @@ describe Portmone::Client do
       VCR.use_cassette('refund_success') do
         response = @client.refund(433831730, amount: Money.new(5000, 'UAH'))
         assert_equal 'payment_id-11', response.shop_order_number
-        assert_equal '434053752', response.shop_bill_id
+        assert_equal '434053752', response.order_id
         assert_equal '', response.description
         assert_equal Date.parse('27.11.2018'), response.bill_date
-        assert_equal Time.new(2018, 11, 27, 0, 0, 0,'+02:00'), response.pay_date
-        assert_nil response.pay_order_date
+        assert_equal Time.new(2018, 11, 27, 0, 0, 0,'+02:00'), response.pay_time
+        assert_nil response.pay_order_time
         assert_equal Money.new(-5000, 'UAH'), response.bill_amount
         assert_equal 'TESTPM', response.auth_code
         assert_equal 'RETURN', response.status

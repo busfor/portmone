@@ -16,11 +16,11 @@ module Portmone
       Date.parse(data['bill_date'])
     end
 
-    def pay_date
+    def pay_time
       ActiveSupport::TimeZone[@timezone].parse(data['pay_date'])
     end
 
-    def pay_order_date
+    def pay_order_time
       ActiveSupport::TimeZone[@timezone].parse(data['pay_order_date']) rescue nil
     end
 
@@ -28,8 +28,11 @@ module Portmone
       Money.from_amount(data['bill_amount'].to_f, @currency)
     end
 
-    %i(shop_bill_id
-       shop_order_number
+    def order_id
+      data.dig('shop_bill_id')
+    end
+
+    %i(shop_order_number
        description
        auth_code
        status

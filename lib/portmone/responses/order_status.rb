@@ -1,8 +1,8 @@
 class Portmone::Responses::OrderStatus < Portmone::Responses::BaseResponse
   %i(bill_date
-     pay_date
-     pay_order_date
-     shop_bill_id
+     pay_time
+     pay_order_time
+     order_id
      shop_order_number
      description
      auth_code
