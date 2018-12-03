@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://www.portmone.com.ua/gateway/
+    body:
+      encoding: UTF-8
+      string: lang=ru&login=SHP_BUSFOR2&method=return&password=11111111&payee_id=16336&return_amount=50.0&shop_bill_id=432822795
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 27 Nov 2018 13:13:33 GMT
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '400'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=mjjh645anip1mr0cf972iafdb1; path=/; secure
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="utf-8"?>
+        <portmoneresult lang="ru"><request><lang>ru</lang><login>SHP_BUSFOR2</login><method>return</method><password>********</password><return_amount>50.0</return_amount><shop_bill_id>432822795</shop_bill_id></request><order><error_code>1</error_code><error_message><![CDATA[ORA-20001: Рахунок не оплачено.]]></error_message></order></portmoneresult>
+    http_version: 
+  recorded_at: Tue, 27 Nov 2018 13:13:36 GMT
+recorded_with: VCR 2.9.3

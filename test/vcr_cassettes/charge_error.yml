@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://www.portmone.com.ua/gateway/
+    body:
+      encoding: UTF-8
+      string: action=set_paid&lang=ru&login=SHP_BUSFOR2&method=preauth&password=11111111&payee_id=16336&postauth_amount=50.0&shop_bill_id=432783653
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 27 Nov 2018 13:06:15 GMT
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '549'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=bk4shkp98dj9ce738vpcineha7; path=/; secure
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="utf-8"?>
+        <portmoneresult lang="ru"><request><action>set_paid</action><lang>ru</lang><login>SHP_BUSFOR2</login><method>preauth</method><password>********</password><postauth_amount>50.0</postauth_amount><shop_bill_id>432783653</shop_bill_id></request><order><error_code>5</error_code><error_message><![CDATA[По данному счету не допускается выполнение подтверждения блокировки средств. [статус=REJECTED]]]></error_message></order></portmoneresult>
+    http_version: 
+  recorded_at: Tue, 27 Nov 2018 13:06:18 GMT
+recorded_with: VCR 2.9.3

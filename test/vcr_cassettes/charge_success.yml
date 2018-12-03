@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://www.portmone.com.ua/gateway/
+    body:
+      encoding: UTF-8
+      string: action=set_paid&lang=ru&login=SHP_BUSFOR2&method=preauth&password=11111111&payee_id=16336&postauth_amount=50.0&shop_bill_id=434052769
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 27 Nov 2018 13:08:52 GMT
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '759'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=6k6nbqgr88k9gf0d7od07f9vu3; path=/; secure
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="utf-8"?>
+        <portmoneresult lang="ru"><request><action>set_paid</action><lang>ru</lang><login>SHP_BUSFOR2</login><method>preauth</method><password>********</password><postauth_amount>50.0</postauth_amount><shop_bill_id>434052769</shop_bill_id></request><order><shop_bill_id>434052769</shop_bill_id><shop_order_number>payment_id-13</shop_order_number><description><![CDATA[Киев-Львов]]></description><bill_date>27.11.2018</bill_date><pay_date>27.11.2018</pay_date><pay_order_date></pay_order_date><bill_amount>50</bill_amount><auth_code>TESTPM</auth_code><status>PAYED</status><attribute1></attribute1><attribute2></attribute2><error_code>0</error_code><error_message><![CDATA[]]></error_message></order></portmoneresult>
+    http_version: 
+  recorded_at: Tue, 27 Nov 2018 13:08:55 GMT
+recorded_with: VCR 2.9.3

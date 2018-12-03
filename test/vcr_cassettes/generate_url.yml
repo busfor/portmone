@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://www.portmone.com.ua/gateway/
+    body:
+      encoding: UTF-8
+      string: bill_amount=50.0&description=%D0%9A%D0%B8%D0%B5%D0%B2-%D0%9B%D1%8C%D0%B2%D0%BE%D0%B2&encoding=utf-8&failure_url=httsp%3A%2F%2Fexample.com&lang=ru&payee_id=16336&preauth_flag=Y&shop_order_number=payment_id-1&success_url=httsp%3A%2F%2Fexample.com
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 302
+      message: Found
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 21 Nov 2018 12:40:17 GMT
+      Content-Type:
+      - text/html; charset=UTF-8
+      Content-Length:
+      - '0'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=sng6kph563liqtljk92kr9p4o7; path=/; secure
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Location:
+      - https://www.portmone.com.ua/r3/pg/gdl55qpbexsk40w4wwk00skcw8sg0cg?is=32366a2feb29d2d06783c8e25f0917441e2b884d5c0c3d2c8e2282ec348d933d549d70ef
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 21 Nov 2018 12:40:17 GMT
+recorded_with: VCR 2.9.3
