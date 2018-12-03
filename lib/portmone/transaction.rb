@@ -3,13 +3,11 @@ module Portmone
     attr_reader :data
 
     def initialize(data)
+      raise Error, "Wrong data: Hash expected, got #{data.inspect}" unless data.is_a?(Hash)
+
       @timezone = data.delete(:timezone)
       @currency = data.delete(:currency)
-      unless data.is_a?(Hash)
-        raise Error, "Wrong data: Hash expected, got #{data.inspect}"
-      else
-        @data = data
-      end
+      @data = data
     end
 
     def bill_date

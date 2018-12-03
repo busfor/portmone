@@ -40,6 +40,7 @@ class Portmone::Responses::OrderStatus < Portmone::Responses::BaseResponse
     amount + reversed_amount
   end
 
+  # статусы "оплачено" и "авторизовано"
   def paid?
     transactions.any?(&:paid?)
   end
