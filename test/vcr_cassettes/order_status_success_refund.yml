@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://www.portmone.com.ua/gateway/
+    body:
+      encoding: UTF-8
+      string: lang=ru&login=SHP_BUSFOR2&method=result&password=11111111&payee_id=16336&shop_order_number=payment_id-15
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 28 Nov 2018 10:29:57 GMT
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '1222'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - PHPSESSID=732ve907ppmqe1q0qhoe3eqa73; path=/; secure
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="utf-8"?>
+        <portmoneresult lang="ru"><request><payee_id>16336</payee_id><shop_order_number>payment_id-15</shop_order_number><status>%</status><start_date>28.10.2018</start_date><end_date>28.11.2018</end_date></request><orders type="list"><order><shop_bill_id>434226609</shop_bill_id><shop_order_number>payment_id-15</shop_order_number><description>Киев-Львов</description><bill_date>28.11.2018</bill_date><pay_date>28.11.2018 11:39:58</pay_date><pay_order_date></pay_order_date><bill_amount>50</bill_amount><auth_code>TESTPM</auth_code><status>PAYED</status><attribute1></attribute1><attribute2></attribute2><error_code>0</error_code><error_message>Отменен на сумму 9, ID отмены 434226706</error_message></order><order><shop_bill_id>434226706</shop_bill_id><shop_order_number>payment_id-15</shop_order_number><description></description><bill_date>28.11.2018</bill_date><pay_date>28.11.2018 11:40:18</pay_date><pay_order_date></pay_order_date><bill_amount>-9</bill_amount><auth_code>TESTPM</auth_code><status>RETURN</status><attribute1></attribute1><attribute2></attribute2><error_code>0</error_code><error_message></error_message></order></orders></portmoneresult>
+    http_version: 
+  recorded_at: Wed, 28 Nov 2018 10:29:57 GMT
+recorded_with: VCR 2.9.3
