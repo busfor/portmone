@@ -51,4 +51,26 @@ class Portmone::Responses::OrderStatus < Portmone::Responses::BaseResponse
   def success?
     order.present? && error_code == '0'
   end
+
+  def transactions
+    @transactions ||= begin
+      data.map do |h|
+        Portmone::Transaction.new(h.merge(timezone: @timezone, currency: @currency))
+      end
+    end
+  end
+
+  def order
+    @order ||= begin
+      data.any? && Portmone::Transaction.new(data.first.merge(data.last).merge(timezone: @timezone, currency: @currency))
+    end
+  end
+
+private
+
+  def data
+    data = @xml_data.dig('portmoneresult', 'orders', 'order') || @xml_data.dig('portmoneresult', 'order') || {}
+    data = [data] unless data.is_a?(Array) # cannot use Array() on Hash
+    data
+  end
 end

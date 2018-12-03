@@ -21,11 +21,10 @@ module Portmone
     end
 
     def generate_url(shop_order_number:, amount:, description:, success_url:, failure_url:, authorize_only: true)
-      method nil
-      response Portmone::Responses::GenerateURL
-
 
       send_request(
+        response_class: Portmone::Responses::GenerateURL,
+        method: nil,
         shop_order_number: shop_order_number,
         bill_amount: format_amount(amount),
         bill_currency: @currency,
@@ -37,25 +36,22 @@ module Portmone
       )
     end
 
-    def order_status(order_id)
-      response Portmone::Responses::OrderStatus
-      generic_report(order_id: order_id)
+    def order_status(shop_order_number)
+      generic_report(shop_order_number: shop_order_number)
     end
 
     def void(order_id)
-      response Portmone::Responses::OrderStatus
       generic_preauth_update(order_id: order_id, action: 'reject')
     end
 
     def charge(order_id, amount)
-      response Portmone::Responses::OrderStatus
       generic_preauth_update(order_id: order_id, action: 'set_paid', amount: amount)
     end
 
     def refund(order_id, amount:)
-      method 'return'
-      response Portmone::Responses::RefundOrderStatus
       send_signed_request(
+        response_class: Portmone::Responses::RefundOrderStatus,
+        method: 'return',
         shop_bill_id: order_id,
         return_amount: format_amount(amount),
       )
@@ -64,11 +60,11 @@ module Portmone
   private
 
     # может возвращать как отдельный заказ по id, так и все заказы с опр. статусом или в опр. временном диапазоне
-    def generic_report(order_id: nil, status: nil, start_date: nil, end_date: nil)
-      method 'result'
-
+    def generic_report(shop_order_number: nil, status: nil, start_date: nil, end_date: nil)
       send_signed_request(
-        shop_order_number: order_id,
+        response_class: Portmone::Responses::OrderStatus,
+        method: 'result',
+        shop_order_number: shop_order_number,
         status: status,
         start_date: start_date,
         end_date: end_date,
@@ -76,9 +72,9 @@ module Portmone
     end
 
     def generic_preauth_update(order_id:, action:, amount: nil)
-      method 'preauth'
-
       attrs = {
+        method: 'preauth',
+        response_class: Portmone::Responses::OrderStatus,
         shop_bill_id: order_id,
         action: action,
       }
@@ -96,14 +92,6 @@ module Portmone
       amount.to_f
     end
 
-    def method(name)
-      @method = name
-    end
-
-    def response(response_klass)
-      @response_klass = response_klass
-    end
-
     def send_signed_request(**data)
       send_request(data.merge(
         login: @login,
@@ -112,15 +100,15 @@ module Portmone
     end
 
     def send_request(**data)
+      response_class = data.delete(:response_class)
       response = http_client.post(BASE_URL) do |req|
         req.body = data.merge(
-          method: @method,
           payee_id: @payee_id,
           lang: @locale,
         ).delete_if { |_, v| v.nil? }
       end
 
-      @response_klass.new(response, currency: @currency, timezone: @timezone)
+      response_class.new(response, currency: @currency, timezone: @timezone)
     end
 
     def http_client
