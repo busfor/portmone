@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    portmone (0.0.3)
+    portmone (0.0.4)
       activesupport
       faraday (~> 0.9)
       money (~> 6.0)

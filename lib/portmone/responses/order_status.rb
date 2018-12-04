@@ -13,7 +13,6 @@ class Portmone::Responses::OrderStatus < Portmone::Responses::BaseResponse
      pay_order_time
      order_id
      shop_order_number
-     shop_bill_id
      description
      auth_code
      status
