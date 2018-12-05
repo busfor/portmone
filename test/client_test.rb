@@ -64,6 +64,7 @@ describe Portmone::Client do
         response = @client.order_status('dummy')
         refute response.success?
         assert_nil response.error_code # no error from Portmone :( no order too
+        assert_empty response.transactions
       end
     end
 

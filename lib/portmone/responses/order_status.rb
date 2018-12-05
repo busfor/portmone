@@ -55,23 +55,31 @@ class Portmone::Responses::OrderStatus < Portmone::Responses::BaseResponse
 
   def transactions
     @transactions ||= begin
-      data.map do |h|
-        Portmone::Transaction.new(h.merge(timezone: @timezone, currency: @currency))
+      if data
+        data.map do |h|
+          Portmone::Transaction.new(h.merge(timezone: @timezone, currency: @currency))
+        end
+      else
+        []
       end
     end
   end
 
   def order
     @order ||= begin
-      data.any? && Portmone::Transaction.new(data.first.merge(data.last).merge(timezone: @timezone, currency: @currency))
+      if data
+        Portmone::Transaction.new(data.first.merge(data.last).merge(timezone: @timezone, currency: @currency))
+      else
+        Portmone::Transaction.new({})
+      end
     end
   end
 
 private
 
   def data
-    data = @xml_data.dig('portmoneresult', 'orders', 'order') || @xml_data.dig('portmoneresult', 'order') || {}
-    data = [data] unless data.is_a?(Array) # cannot use Array() on Hash
+    data = @xml_data.dig('portmoneresult', 'orders', 'order') || @xml_data.dig('portmoneresult', 'order')
+    data = [data] if data.is_a?(Hash) # cannot use Array() on Hash
     data
   end
 end
