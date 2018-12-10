@@ -11,15 +11,15 @@ module Portmone
     end
 
     def bill_date
-      Date.parse(data['bill_date'])
+      data['bill_date'] && Date.parse(data['bill_date'])
     end
 
     def pay_time
-      ActiveSupport::TimeZone[@timezone].parse(data['pay_date'])
+      data['pay_date'] && ActiveSupport::TimeZone[@timezone].parse(data['pay_date'])
     end
 
     def pay_order_time
-      ActiveSupport::TimeZone[@timezone].parse(data['pay_order_date']) rescue nil
+      data['pay_order_date'] && ActiveSupport::TimeZone[@timezone].parse(data['pay_order_date'])
     end
 
     def bill_amount

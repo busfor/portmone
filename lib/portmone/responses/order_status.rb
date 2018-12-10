@@ -27,7 +27,7 @@ class Portmone::Responses::OrderStatus < Portmone::Responses::BaseResponse
   def amount
     transactions.select(&:paid?)
                 .map { |t| t.bill_amount }
-                .inject(:+) || transactions.first.bill_amount
+                .inject(:+) || transactions.first&.bill_amount
   end
 
   def reversed_amount
@@ -70,7 +70,7 @@ class Portmone::Responses::OrderStatus < Portmone::Responses::BaseResponse
       if data
         Portmone::Transaction.new(data.first.merge(data.last).merge(timezone: @timezone, currency: @currency))
       else
-        Portmone::Transaction.new({})
+        Portmone::Transaction.new(timezone: @timezone, currency: @currency)
       end
     end
   end
