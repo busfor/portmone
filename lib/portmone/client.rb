@@ -10,7 +10,8 @@ module Portmone
                    locale:,
                    currency:,
                    timezone: 'Europe/Kiev',
-                   logger: nil)
+                   logger: nil,
+                   **args)
       @payee_id = payee_id
       @login = login
       @password = password

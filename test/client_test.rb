@@ -13,6 +13,19 @@ describe Portmone::Client do
     )
   end
 
+  describe 'new' do
+    it 'ignores unknown params' do
+      Portmone::Client.new(
+        payee_id: '16336',
+        locale: 'ru',
+        login: 'SHP_BUSFOR2',
+        password: '11111111',
+        currency: 'UAH',
+        foo: 'bar',
+      )
+    end
+  end
+
   describe 'generate_url' do
     it "returnes valid response" do
       VCR.use_cassette('generate_url') do
