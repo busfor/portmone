@@ -71,12 +71,12 @@ describe Portmone::Client do
     it "returnes valid response after partial refund" do
       VCR.use_cassette('order_status_success_refund') do
         response = @client.order_status('payment_id-15')
-        assert_equal '434226706', response.order_id
+        assert_equal 'RETURN', response.status
+        assert_equal '0', response.error_code
         assert_equal Money.from_amount(41.00, 'UAH'), response.actual_amount
         assert_equal Money.from_amount(-9.00, 'UAH'), response.reversed_amount
         assert_equal Money.from_amount(50.0, 'UAH'), response.amount
-        assert_equal 'RETURN', response.status
-        assert_equal '0', response.error_code
+        assert_equal '434226706', response.order_id
         assert_nil response.error_message
       end
     end

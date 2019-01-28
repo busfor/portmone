@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    portmone (0.0.6)
+    portmone (0.0.7)
       activesupport
       faraday (~> 0.9)
       money (~> 6.0)
@@ -85,4 +85,4 @@ DEPENDENCIES
   webmock (~> 3.0)
 
 BUNDLED WITH
-   1.14.6
+   1.17.2
