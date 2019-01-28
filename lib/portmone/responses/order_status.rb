@@ -80,6 +80,6 @@ private
   def data
     data = @xml_data.dig('portmoneresult', 'orders', 'order') || @xml_data.dig('portmoneresult', 'order')
     data = [data] if data.is_a?(Hash) # cannot use Array() on Hash
-    data
+    data&.sort_by { |h| h['pay_date'] && ActiveSupport::TimeZone[@timezone].parse(h['pay_date']) }
   end
 end
