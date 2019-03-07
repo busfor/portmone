@@ -9,6 +9,7 @@ module Portmone
                    password:,
                    locale:,
                    currency:,
+                   exp_time: nil,
                    timezone: 'Europe/Kiev',
                    logger: nil)
       @payee_id = payee_id
@@ -18,6 +19,7 @@ module Portmone
       @currency = currency
       @timezone = timezone
       @logger = logger
+      @exp_time = exp_time
     end
 
     def generate_url(shop_order_number:, amount:, description:, success_url:, failure_url:, authorize_only: true)
@@ -32,7 +34,8 @@ module Portmone
         success_url: success_url,
         failure_url: failure_url,
         encoding: 'utf-8',
-        preauth_flag: authorize_only ? 'Y' : 'N'
+        preauth_flag: authorize_only ? 'Y' : 'N',
+        exp_time: @exp_time
       )
     end
 
