@@ -63,10 +63,9 @@ module Portmone
       )
     end
 
-    def google_pay(token:, amount:, order_id:, currency:, merchant_name:)
+    def google_pay(token:, amount:, order_id:, currency:)
       google_pay_params = {
         gPayToken: token,
-        gPayMerchantName: merchant_name,
       }
       mobile_pay('GPay', google_pay_params, amount: amount, order_id: order_id, currency: currency)
     end
