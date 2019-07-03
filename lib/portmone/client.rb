@@ -2,7 +2,10 @@ module Portmone
   class Error < StandardError; end
 
   class Client
-    BASE_URL = 'https://www.portmone.com.ua/gateway/'.freeze
+    BASE_URLS = {
+      gateway: 'https://www.portmone.com.ua/gateway/',
+      mobile: 'https://www.portmone.com.ua/r3/api/gateway',
+    }.freeze
 
     def initialize(payee_id:,
                    login:,
@@ -60,7 +63,53 @@ module Portmone
       )
     end
 
-  private
+    def google_pay(token:, amount:, order_id:, currency:, merchant_name:)
+      google_pay_params = {
+        gPayToken: token,
+        gPayMerchantName: merchant_name,
+      }
+      mobile_pay('GPay', google_pay_params, amount: amount, order_id: order_id, currency: currency)
+    end
+
+    def apple_pay(token:, amount:, order_id:, currency:, merchant_name:)
+      apple_pay_params = {
+        aPayMerchantName: merchant_name,
+        aPayToken: token,
+      }
+      mobile_pay('APay', apple_pay_params, amount: amount, order_id: order_id, currency: currency)
+    end
+
+    private
+
+    def mobile_pay(payment_method, payment_system_params, amount:, order_id:, currency:)
+      order_params = {
+        billAmount: amount,
+        shopOrderNumber: order_id,
+        billCurrency: currency,
+      }
+
+      data = payment_system_params
+        .merge(order_params)
+        .merge(base_params)
+        .keep_if { |_, v| v.present? }
+
+      request_params = {
+        response_class: Portmone::Responses::MobilePayResponse,
+        method: payment_method,
+        params: { data: data },
+        http_method: :post,
+        url: BASE_URLS[:mobile],
+      }
+      send_request(request_params)
+    end
+
+    def base_params
+      {
+        login: @login,
+        password: @password,
+        payeeId: @payee_id,
+      }
+    end
 
     # может возвращать как отдельный заказ по id, так и все заказы с опр. статусом или в опр. временном диапазоне
     def generic_report(shop_order_number: nil, status: nil, start_date: nil, end_date: nil)
@@ -104,7 +153,9 @@ module Portmone
 
     def send_request(**data)
       response_class = data.delete(:response_class)
-      response = http_client.post(BASE_URL) do |req|
+      http_method = data[:http_method].in?(%i(get post)) ? data[:http_method] : :post
+      url = data[:url] ? data[:url] : BASE_URLS[:gateway]
+      response = http_client.send(http_method, url) do |req|
         req.body = data.merge(
           payee_id: @payee_id,
           lang: @locale,
