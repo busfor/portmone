@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://www.portmone.com.ua/r3/api/gateway
+    body:
+      encoding: UTF-8
+      string: lang=ru&method=APay&params%5Bdata%5D%5BaPayMerchantName%5D=merchant.portmone.com.busfor.Busfor&params%5Bdata%5D%5BaPayToken%5D=TOKEN&params%5Bdata%5D%5BbillAmount%5D=1000&params%5Bdata%5D%5BbillCurrency%5D=UAH&params%5Bdata%5D%5Blogin%5D=SHP_BUSFOR2&params%5Bdata%5D%5Bpassword%5D=11111111&params%5Bdata%5D%5BpayeeId%5D=16336&params%5Bdata%5D%5BshopOrderNumber%5D=123&payee_id=16336&url=https%3A%2F%2Fwww.portmone.com.ua%2Fr3%2Fapi%2Fgateway
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      server:
+      - nginx
+      date:
+      - Mon, 08 Jul 2019 10:59:03 GMT
+      content-type:
+      - text/html; charset=UTF-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      set-cookie:
+      - PHPSESSID=14916998a8462abf7d1291cfd0dc3cca; path=/; secure, AppLang=deleted;
+        expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0; path=/; secure
+      expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      cache-control:
+      - no-store, no-cache, must-revalidate
+      pragma:
+      - no-cache
+      strict-transport-security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: "{\"result\":{\"status\":\"success\",\"errorCode\":null,\"error\":null}}"
+    http_version:
+  recorded_at: Mon, 08 Jul 2019 10:59:04 GMT
+recorded_with: VCR 2.9.3
