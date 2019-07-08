@@ -157,7 +157,7 @@ module Portmone
       response = Faraday.new(url).post do |request|
         request.body = params.to_json
       end
-      response_class.new(response, currency: @currency, timezone: @timezone) if response.success?
+      response_class.new(response, currency: @currency, timezone: @timezone)
     end
 
     def mandatory_params
