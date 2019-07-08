@@ -155,6 +155,7 @@ module Portmone
 
     def make_json_request(url, params, response_class)
       response = Faraday.new(url).post do |request|
+        request.headers['Content-Type'] = 'application/json'
         request.body = params.to_json
       end
       response_class.new(response, currency: @currency, timezone: @timezone)
