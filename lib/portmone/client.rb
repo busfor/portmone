@@ -2,12 +2,8 @@ module Portmone
   class Error < StandardError; end
 
   class Client
-    VALID_HTTP_METHODS = %w(get post).freeze
-    DEFAULT_HTTP_METHOD = 'post'.freeze
-    BASE_URLS = {
-      gateway: 'https://www.portmone.com.ua/gateway/',
-      mobile: 'https://www.portmone.com.ua/r3/api/gateway',
-    }.freeze
+    API_URL = 'https://www.portmone.com.ua/gateway/'.freeze
+    MOBILE_API_URL = 'https://www.portmone.com.ua/r3/api/gateway'.freeze
 
     def initialize(payee_id:,
                    login:,
@@ -93,14 +89,9 @@ module Portmone
         .merge(order_params)
         .merge(base_params)
         .keep_if { |_, v| v.present? }
+      params = { params: { data: data }, method: payment_method }
 
-      request_params = {
-        response_class: Portmone::Responses::MobilePayResponse,
-        method: payment_method,
-        params: { data: data },
-        url: BASE_URLS[:mobile],
-      }
-      send_request(request_params)
+      make_json_request(MOBILE_API_URL, params, Portmone::Responses::MobilePayResponse)
     end
 
     def base_params
@@ -153,21 +144,31 @@ module Portmone
 
     def send_request(**data)
       response_class = data.delete(:response_class)
-      http_method =  data[:http_method] || DEFAULT_HTTP_METHOD
-      raise 'Invalid http method' unless VALID_HTTP_METHODS.include?(http_method)
+      payload = compact(data.merge(mandatory_params))
 
-      url = data[:url] ? data[:url] : BASE_URLS[:gateway]
-      response = http_client.send(http_method, url) do |req|
-        req.body = data.merge(
-          payee_id: @payee_id,
-          lang: @locale,
-        ).delete_if { |_, v| v.nil? }
+      response = http_client.post(API_URL) do |req|
+        req.body = payload
       end
 
       response_class.new(response, currency: @currency, timezone: @timezone)
     end
 
-    def http_client
+    def make_json_request(url, params, response_class)
+      response = Faraday.new(url).post do |request|
+        request.body = params.to_json
+      end
+      response_class.new(response, currency: @currency, timezone: @timezone) if response.success?
+    end
+
+    def mandatory_params
+      { payee_id: @payee_id, lang: @locale }
+    end
+
+    def compact(**params)
+      params.delete_if { |_, v| v.nil? }
+    end
+
+    def http_client(url_encoded: nil)
       @http_client ||= Faraday.new do |builder|
         builder.request :url_encoded
         builder.response :logger, @logger, bodies: true if @logger
