@@ -169,7 +169,7 @@ module Portmone
       params.delete_if { |_, v| v.nil? }
     end
 
-    def http_client(url_encoded: nil)
+    def http_client
       @http_client ||= Faraday.new do |builder|
         builder.request :url_encoded
         builder.response :logger, @logger, bodies: true if @logger
