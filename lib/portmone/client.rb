@@ -3,7 +3,7 @@ module Portmone
 
   class Client
     API_URL = 'https://www.portmone.com.ua/gateway/'.freeze
-    MOBILE_API_URL = 'https://www.portmone.com.ua/r3/api/gateway'.freeze
+    MOBILE_API_URL = 'https://www.portmone.com.ua/r3/api/gateway/'.freeze
 
     def initialize(payee_id:,
                    login:,
@@ -89,7 +89,7 @@ module Portmone
         .merge(order_params)
         .merge(base_params)
         .keep_if { |_, v| v.present? }
-      params = { params: { data: data }, method: payment_method }
+      params = { params: { data: data }, method: payment_method, id: 1 }
 
       make_json_request(MOBILE_API_URL, params, Portmone::Responses::MobilePayResponse)
     end
@@ -154,10 +154,16 @@ module Portmone
     end
 
     def make_json_request(url, params, response_class)
-      response = Faraday.new(url).post do |request|
+      conn = Faraday.new(url: url) do |builder|
+        builder.response(:detailed_logger, @logger)
+        builder.adapter Faraday.default_adapter
+      end
+
+      response = conn.post do |request|
         request.headers['Content-Type'] = 'application/json'
         request.body = params.to_json
       end
+
       response_class.new(response, currency: @currency, timezone: @timezone)
     end
 

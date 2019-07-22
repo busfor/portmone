@@ -1,4 +1,6 @@
 class Portmone::Responses::MobilePayResponse
+  SUCCESS_STATUS = 'PAYED'.freeze
+
   attr_reader :response
 
   def initialize(faraday_response, currency:, timezone:)
@@ -13,7 +15,7 @@ class Portmone::Responses::MobilePayResponse
   end
 
   def success?
-    @response_body['result']['status'] == 'success'
+    @response_body['result']['status'] == SUCCESS_STATUS
   end
 
   def error_code
