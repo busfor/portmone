@@ -71,7 +71,7 @@ module Portmone
     def apple_pay(token:, amount:, order_id:, currency:, merchant_name:)
       apple_pay_params = {
         aPayMerchantName: merchant_name,
-        aPayToken: token,
+        paymentData: token,
       }
       mobile_pay('APay', apple_pay_params, amount: amount, order_id: order_id, currency: currency)
     end
