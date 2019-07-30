@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://www.portmone.com.ua/r3/api/gateway
+    body:
+      encoding: UTF-8
+      string: '{"params":{"data":{"aPayMerchantName":"merchant.portmone.com.busfor.Busfor","aPayToken":"TOKEN","billAmount":1000,"shopOrderNumber":123,"billCurrency":"UAH","login":"SHP_BUSFOR2","password":"11111111","payeeId":"16336"}},"method":"APay"}'
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      server:
+      - nginx
+      date:
+      - Mon, 08 Jul 2019 13:00:26 GMT
+      content-type:
+      - application/json; charset=UTF-8
+      content-length:
+      - '85'
+      connection:
+      - close
+      set-cookie:
+      - PHPSESSID=1babcfccac599a8ffe6320b85a503a6a; path=/; secure, AppLang=deleted;
+        expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0; path=/; secure
+      expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      cache-control:
+      - no-store, no-cache, must-revalidate
+      pragma:
+      - no-cache
+      strict-transport-security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: "{\"result\":{\"status\":\"success\",\"errorCode\":null,\"error\":null}}"
+    http_version:
+  recorded_at: Mon, 08 Jul 2019 13:00:26 GMT
+recorded_with: VCR 2.9.3

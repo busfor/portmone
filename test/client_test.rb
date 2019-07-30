@@ -171,4 +171,39 @@ describe Portmone::Client do
       end
     end
   end
+
+  describe 'apple_pay' do
+    it 'returnes valid response if success' do
+      VCR.use_cassette('apple_pay_success') do
+        params = {
+          token: 'TOKEN',
+          amount: 1000,
+          order_id: 123,
+          currency: 'UAH',
+          merchant_name: 'merchant.portmone.com.busfor.Busfor',
+        }
+        response = @client.apple_pay(**params)
+        assert response.success?
+        refute response.error_code
+        refute response.error_description
+      end
+    end
+  end
+
+  describe 'google_pay' do
+    it 'returnes valid response if success' do
+      VCR.use_cassette('google_pay_success') do
+        params = {
+          token: 'TOKEN',
+          amount: 1000,
+          order_id: 123,
+          currency: 'UAH',
+        }
+        response = @client.google_pay(**params)
+        assert response.success?
+        refute response.error_code
+        refute response.error_description
+      end
+    end
+  end
 end

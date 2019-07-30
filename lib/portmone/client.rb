@@ -2,7 +2,8 @@ module Portmone
   class Error < StandardError; end
 
   class Client
-    BASE_URL = 'https://www.portmone.com.ua/gateway/'.freeze
+    API_URL = 'https://www.portmone.com.ua/gateway/'.freeze
+    MOBILE_API_URL = 'https://www.portmone.com.ua/r3/api/gateway/'.freeze
 
     def initialize(payee_id:,
                    login:,
@@ -60,7 +61,46 @@ module Portmone
       )
     end
 
-  private
+    def google_pay(token:, amount:, order_id:, currency:)
+      google_pay_params = {
+        gPayToken: token,
+      }
+      mobile_pay('GPay', google_pay_params, amount: amount, order_id: order_id, currency: currency)
+    end
+
+    def apple_pay(token:, amount:, order_id:, currency:, merchant_name:)
+      apple_pay_params = {
+        aPayMerchantName: merchant_name,
+        paymentData: token,
+      }
+      mobile_pay('APay', apple_pay_params, amount: amount, order_id: order_id, currency: currency)
+    end
+
+    private
+
+    def mobile_pay(payment_method, payment_system_params, amount:, order_id:, currency:)
+      order_params = {
+        billAmount: amount,
+        shopOrderNumber: order_id,
+        billCurrency: currency,
+      }
+
+      data = payment_system_params
+        .merge(order_params)
+        .merge(base_params)
+        .keep_if { |_, v| v.present? }
+      params = { params: { data: data }, method: payment_method, id: 1 }
+
+      make_json_request(MOBILE_API_URL, params, Portmone::Responses::MobilePayResponse)
+    end
+
+    def base_params
+      {
+        login: @login,
+        password: @password,
+        payeeId: @payee_id,
+      }
+    end
 
     # может возвращать как отдельный заказ по id, так и все заказы с опр. статусом или в опр. временном диапазоне
     def generic_report(shop_order_number: nil, status: nil, start_date: nil, end_date: nil)
@@ -104,14 +144,35 @@ module Portmone
 
     def send_request(**data)
       response_class = data.delete(:response_class)
-      response = http_client.post(BASE_URL) do |req|
-        req.body = data.merge(
-          payee_id: @payee_id,
-          lang: @locale,
-        ).delete_if { |_, v| v.nil? }
+      payload = compact(data.merge(mandatory_params))
+
+      response = http_client.post(API_URL) do |req|
+        req.body = payload
       end
 
       response_class.new(response, currency: @currency, timezone: @timezone)
+    end
+
+    def make_json_request(url, params, response_class)
+      conn = Faraday.new(url: url) do |builder|
+        builder.response(:detailed_logger, @logger)
+        builder.adapter Faraday.default_adapter
+      end
+
+      response = conn.post do |request|
+        request.headers['Content-Type'] = 'application/json'
+        request.body = params.to_json
+      end
+
+      response_class.new(response, currency: @currency, timezone: @timezone)
+    end
+
+    def mandatory_params
+      { payee_id: @payee_id, lang: @locale }
+    end
+
+    def compact(**params)
+      params.delete_if { |_, v| v.nil? }
     end
 
     def http_client
