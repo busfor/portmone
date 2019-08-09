@@ -40,8 +40,15 @@ module Portmone
       )
     end
 
-    def order_status(shop_order_number)
-      generic_report(shop_order_number: shop_order_number)
+    def order_status(shop_order_number, created_date: nil)
+      if created_date
+        generic_report(shop_order_number: shop_order_number)
+      else
+        date = format_date(created_date)
+        generic_report(shop_order_number: shop_order_number,
+                       start_date: date,
+                       end_date: date)
+      end
     end
 
     def void(order_id)
