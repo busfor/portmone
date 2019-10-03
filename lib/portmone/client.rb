@@ -42,10 +42,11 @@ module Portmone
 
     def order_status(shop_order_number, created_date: nil)
       if created_date
-        date = format_date(created_date)
+        start_date = created_date - 1.day
+        end_date = created_date + 1.day
         generic_report(shop_order_number: shop_order_number,
-                       start_date: date,
-                       end_date: date)
+                       start_date: format_date(start_date),
+                       end_date: format_date(end_date))
       else
         generic_report(shop_order_number: shop_order_number)
       end
