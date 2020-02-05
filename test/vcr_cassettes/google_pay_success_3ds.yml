@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://www.portmone.com.ua/r3/api/gateway/
+    body:
+      encoding: UTF-8
+      string: '{"params":{"data":{"gPayToken":"TOKEN","billAmount":1000,"shopOrderNumber":123,"billCurrency":"UAH","login":"SHP_BUSFOR2","password":"11111111","payeeId":"16336"}},"method":"GPay","id":1}'
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message:
+    headers:
+      server:
+      - nginx
+      date:
+      - Wed, 05 Feb 2020 18:25:51 GMT
+      content-type:
+      - application/json; charset=UTF-8
+      content-length:
+      - '720'
+      connection:
+      - close
+      set-cookie:
+      - PHPSESSID=0d73d564eac9b325765f5afd3b11b755; path=/; secure, AppLang=deleted;
+        expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0; path=/; secure, PHPSESSID=62acbbac4b42314441b9df928595d3de;
+        path=/; secure
+      expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      cache-control:
+      - no-store, no-cache, must-revalidate
+      pragma:
+      - no-cache
+      strict-transport-security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: "{\"result\":{\"status\":\"CREATED\",\"errorCode\":\"0\",\"error\":\"\",\"shopBillId\":\"550301774\",\"billAmount\":\"1.01\",\"billNumber\":\"SHP-00000002\",\"attribute1\":\"1\",\"attribute2\":\"2\",\"attribute3\":\"3\",\"attribute4\":\"4\",\"cardMask\":\"516875******0754\",\"actionMPI\":\"https://acs.privatbank.ua/pPaReqMC.jsp\",\"pareq\":\"eJxVUuFOwjAQfhWy/67ttpaWHCVTMBIdIzoeYNkaWHQblE3Rp/eKQ/RHc/fdXb+7fleYneq30buxx6ptph7zqTcyTdGWVbOdepvs/kZ6Mw3ZzhozfzFFb42GxByP+daMqnLqrfNnc2BcKCUkV4yJiI8Zp3LMxhEXUjAaqdDTsI6xTsPQSWMjPwBygUhpi13edBry4nC7XGkeScElkAFCbexyroXgVAUCyA+EJq+NXqfPWZKuFv5dmvib2M8WT4vHNAFyzkLR9k1nP7WkEZALgN6+6V3UlTqZxx94Tmm2QLv8SF4o2leefG2mQFwFlHlndECZYpSyURBMgnDCGJBzHPLaDeEkwNAAYO96xEPGJf4GAHW3uJZPrSTFR1wQmNMeB8cK1PLXB3Id+O7BKVp0KFYoFJdjxcKQOlnPMUdQoRwBo/zM4AAQd4sMGyPDttH79wu+AY9PtmI=\",\"authCode\":\"\",\"description\":\"test payment\",\"lang\":\"uk\",\"md\":\"177237526\",\"isNeed3DS\":\"Y\",\"token\":\"\",\"billCurrency\":\"UAH\",\"transactionId\":\"\",\"pdfUrl\":\"https://www.portmone.com.ua/r3/services/receipts/get-receipts/shop-bill-id/34399401fa6c9d60ebc27ae4cd5cb45f86f0c3b738c2dcd791555bd6947aea84b54b2f22d8b1822463a88af1bbf364bc3d0f122a8e4d88926797ba86f\",\"shop_site_id\":\"\"},\"id\":\"1\"}"
+    http_version:
+  recorded_at: Wed, 05 Feb 2020 18:26:05 GMT
+recorded_with: VCR 2.9.3

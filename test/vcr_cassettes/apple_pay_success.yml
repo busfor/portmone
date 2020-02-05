@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://www.portmone.com.ua/r3/api/gateway
+    uri: https://www.portmone.com.ua/r3/api/gateway/
     body:
       encoding: UTF-8
-      string: '{"params":{"data":{"aPayMerchantName":"merchant.portmone.com.busfor.Busfor","aPayToken":"TOKEN","billAmount":1000,"shopOrderNumber":123,"billCurrency":"UAH","login":"SHP_BUSFOR2","password":"11111111","payeeId":"16336"}},"method":"APay"}'
+      string: '{"params":{"data":{"aPayMerchantName":"merchant.portmone.com.busfor.Busfor","paymentData":"TOKEN","billAmount":1000,"shopOrderNumber":123,"billCurrency":"UAH","login":"SHP_BUSFOR2","password":"11111111","payeeId":"16336"}},"method":"APay","id":1}'
     headers:
       User-Agent:
       - Faraday v0.15.4
@@ -19,16 +19,17 @@ http_interactions:
       server:
       - nginx
       date:
-      - Mon, 08 Jul 2019 13:00:26 GMT
+      - Wed, 05 Feb 2020 18:32:41 GMT
       content-type:
       - application/json; charset=UTF-8
       content-length:
-      - '85'
+      - '719'
       connection:
       - close
       set-cookie:
-      - PHPSESSID=1babcfccac599a8ffe6320b85a503a6a; path=/; secure, AppLang=deleted;
-        expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0; path=/; secure
+      - PHPSESSID=6b041b9de8e2ee5407bb1790d5f187ee; path=/; secure, AppLang=deleted;
+        expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0; path=/; secure, PHPSESSID=87d96db2a8ae275eca208e32b53cf7aa;
+        path=/; secure
       expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       cache-control:
@@ -39,7 +40,7 @@ http_interactions:
       - max-age=31536000
     body:
       encoding: UTF-8
-      string: "{\"result\":{\"status\":\"success\",\"errorCode\":null,\"error\":null}}"
+      string: "{\"result\":{\"status\":\"PAYED\",\"errorCode\":\"0\",\"error\":\"\",\"shopBillId\":\"550298815\",\"billAmount\":\"1.01\",\"billNumber\":\"SHP-00000002\",\"attribute1\":\"\",\"attribute2\":\"\",\"attribute3\":\"\",\"attribute4\":\"\",\"cardMask\":\"535560******3735\",\"actionMPI\":\"\",\"pareq\":\"\",\"authCode\":\"67037Z\",\"description\":\"test payment\",\"lang\":\"uk\",\"md\":\"\",\"isNeed3DS\":\"N\",\"token\":\"\",\"billCurrency\":\"UAH\",\"transactionId\":\"927500948048\",\"pdfUrl\":\"https://www.portmone.com.ua/r3/services/receipts/get-receipts/shop-bill-id/35357a20f10b49519794e81b48b20d0402cd2b7654553048021cb230400befdf94bacfbb12bd77983adae9422fbcc51cf0987a171403f08b33b2d119249845bad4e457\",\"shop_site_id\":\"\"},\"id\":\"1\"}"
     http_version:
-  recorded_at: Mon, 08 Jul 2019 13:00:26 GMT
+  recorded_at: Wed, 05 Feb 2020 18:32:54 GMT
 recorded_with: VCR 2.9.3
