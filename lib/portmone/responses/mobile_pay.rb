@@ -16,35 +16,40 @@ class Portmone::Responses::MobilePay
   end
 
   def success?
-    @response_body['result']['status'] == SUCCESS_STATUS
+    result['status'] == SUCCESS_STATUS
   end
 
   def created?
-    @response_body['result']['status'] == CREATED_STATUS
+    result['status'] == CREATED_STATUS
   end
 
   def error_code
-    @response_body['result']['errorCode']
+    result['errorCode']
   end
 
   def error_description
-    @response_body['result']['error']
+    result['error']
   end
 
   def required_3ds?
-    @response_body['result']['status'] == CREATED_STATUS &&
-      @response_body['result']['isNeed3DS']
+    created? && result['isNeed3DS']
   end
 
   def acs_url
-    @response_body['result']['actionMPI'] if required_3ds?
+    result['actionMPI'] if required_3ds?
   end
 
   def md
-    @response_body['result']['md'] if required_3ds?
+    result['md'] if required_3ds?
   end
 
   def pa_req
-    @response_body['result']['pareq'] if required_3ds?
+    result['pareq'] if required_3ds?
+  end
+
+  private
+
+  def result
+    @result ||= @response_body['result']
   end
 end
