@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://www.portmone.com.ua/r3/api/gateway/
+    body:
+      encoding: UTF-8
+      string: '{"params":{"data":{"MD":"MD","PaRes":"PaRes","shopBillId":123},"id":1},"method":"confirmMpi"}'
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 204
+      message: 
+    headers:
+      server:
+      - nginx
+      date:
+      - Wed, 05 Feb 2020 18:39:35 GMT
+      content-type:
+      - application/json; charset=UTF-8
+      connection:
+      - close
+      set-cookie:
+      - PHPSESSID=7b38ca2df905815ba39fcc08fc712068; path=/; secure, AppLang=deleted;
+        expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0; path=/; secure
+      expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      cache-control:
+      - no-store, no-cache, must-revalidate
+      pragma:
+      - no-cache
+      strict-transport-security:
+      - max-age=31536000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 05 Feb 2020 18:39:49 GMT
+recorded_with: VCR 2.9.3

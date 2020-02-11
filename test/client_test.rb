@@ -184,8 +184,8 @@ describe Portmone::Client do
         }
         response = @client.apple_pay(**params)
         assert response.success?
-        refute response.error_code
-        refute response.error_description
+        assert_equal '0', response.error_code
+        assert_equal '', response.error_description
       end
     end
   end
@@ -201,9 +201,44 @@ describe Portmone::Client do
         }
         response = @client.google_pay(**params)
         assert response.success?
-        refute response.error_code
-        refute response.error_description
+        assert_equal '0', response.error_code
+        assert_equal '', response.error_description
       end
+    end
+  end
+
+  describe '3ds support' do
+    it 'uses 2 stage payment when 3ds' do
+      threeds_payment_params = {
+        token: 'TOKEN',
+        amount: 1000,
+        order_id: 123,
+        currency: 'UAH',
+      }
+
+      threeds_response =
+        VCR.use_cassette('google_pay_success_3ds') do
+          @client.google_pay(**threeds_payment_params)
+        end
+
+      refute threeds_response.success?
+      assert threeds_response.required_3ds?
+      assert threeds_response.acs_url
+      assert threeds_response.md
+      assert threeds_response.pa_req
+
+      finish_3ds_params = {
+        order_id: 123,
+        md: 'MD',
+        pa_res: 'PaRes',
+      }
+
+      finish_3ds_response =
+        VCR.use_cassette('finish_3ds') do
+          @client.finish_3ds(finish_3ds_params)
+        end
+
+      assert finish_3ds_response.success?
     end
   end
 end

@@ -84,6 +84,14 @@ module Portmone
       mobile_pay('APay', apple_pay_params, amount: amount, order_id: order_id, currency: currency)
     end
 
+    def finish_3ds(md:, pa_res:, order_id:)
+      params = {
+        params: { data: { 'MD': md.to_s, 'PaRes': pa_res.to_s, 'shopBillId': order_id }, id: 1 },
+        method: 'confirmMpi',
+      }
+      make_json_request(MOBILE_API_URL, params, Portmone::Responses::Finish3DS)
+    end
+
     private
 
     def mobile_pay(payment_method, payment_system_params, amount:, order_id:, currency:)
@@ -99,7 +107,7 @@ module Portmone
         .keep_if { |_, v| v.present? }
       params = { params: { data: data }, method: payment_method, id: 1 }
 
-      make_json_request(MOBILE_API_URL, params, Portmone::Responses::MobilePayResponse)
+      make_json_request(MOBILE_API_URL, params, Portmone::Responses::MobilePay)
     end
 
     def base_params
@@ -163,7 +171,7 @@ module Portmone
 
     def make_json_request(url, params, response_class)
       conn = Faraday.new(url: url) do |builder|
-        builder.response(:detailed_logger, @logger)
+        builder.response(:detailed_logger, @logger) if @logger
         builder.adapter Faraday.default_adapter
       end
 

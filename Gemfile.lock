@@ -4,6 +4,7 @@ PATH
     portmone (0.0.12)
       activesupport
       faraday (~> 0.9)
+      faraday-detailed_logger
       money (~> 6.0)
       multi_xml (~> 0.5)
 
@@ -25,6 +26,8 @@ GEM
     docile (1.1.5)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
+    faraday-detailed_logger (2.1.3)
+      faraday (~> 0.8)
     hashdiff (0.3.7)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
