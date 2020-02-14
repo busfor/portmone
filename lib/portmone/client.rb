@@ -86,8 +86,9 @@ module Portmone
 
     def finish_3ds(md:, pa_res:, order_id:)
       params = {
-        params: { data: { 'MD': md.to_s, 'PaRes': pa_res.to_s, 'shopBillId': order_id }, id: 1 },
         method: 'confirmMpi',
+        params: { data: { 'MD': md.to_s, 'PaRes': pa_res.to_s, 'shopBillId': order_id.to_s } },
+        id: '1' ,
       }
       make_json_request(MOBILE_API_URL, params, Portmone::Responses::Finish3DS)
     end
