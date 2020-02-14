@@ -32,7 +32,7 @@ class Portmone::Responses::MobilePay
   end
 
   def required_3ds?
-    created? && result['isNeed3DS']
+    created? && result['isNeed3DS'] == 'Y'
   end
 
   def acs_url
