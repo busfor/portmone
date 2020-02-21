@@ -228,7 +228,7 @@ describe Portmone::Client do
       assert threeds_response.pa_req
 
       finish_3ds_params = {
-        order_id: 123,
+        shop_bill_id: 123,
         md: 'MD',
         pa_res: 'PaRes',
       }

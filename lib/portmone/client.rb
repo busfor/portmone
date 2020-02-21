@@ -84,11 +84,11 @@ module Portmone
       mobile_pay('APay', apple_pay_params, amount: amount, order_id: order_id, currency: currency)
     end
 
-    def finish_3ds(md:, pa_res:, order_id:)
+    def finish_3ds(md:, pa_res:, shop_bill_id:)
       params = {
         method: 'confirmMpi',
-        params: { data: { 'MD': md.to_s, 'PaRes': pa_res.to_s, 'shopBillId': order_id.to_s } },
-        id: '1' ,
+        params: { data: { 'MD': md.to_s, 'PaRes': pa_res.to_s, 'shopBillId': shop_bill_id.to_s } },
+        id: '1',
       }
       make_json_request(MOBILE_API_URL, params, Portmone::Responses::Finish3DS)
     end
