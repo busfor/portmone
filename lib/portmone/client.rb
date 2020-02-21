@@ -88,7 +88,7 @@ module Portmone
       params = {
         method: 'confirmMpi',
         params: { data: { 'MD': md.to_s, 'PaRes': pa_res.to_s, 'shopBillId': shop_bill_id.to_s } },
-        id: '1' ,
+        id: '1',
       }
       make_json_request(MOBILE_API_URL, params, Portmone::Responses::Finish3DS)
     end
