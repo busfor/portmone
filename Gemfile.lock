@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    portmone (0.0.16)
+    portmone (0.0.15)
       activesupport
       faraday (~> 0.9)
       faraday-detailed_logger
