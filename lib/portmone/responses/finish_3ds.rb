@@ -1,4 +1,6 @@
 class Portmone::Responses::Finish3DS
+  SUCCESS_STATUS = 'PAYED'.freeze
+
   attr_reader :response
 
   def initialize(faraday_response, currency:, timezone:)
@@ -12,13 +14,8 @@ class Portmone::Responses::Finish3DS
     response.status
   end
 
-# Если в ответе получены значения параметров isNeed3DS: "N", errorCode: "0", status: "PAYED" - платеж считать успешным
-# Если в ответе получено isNeed3DS: "Y" и заполнены actionMPI, pareq, md, необходимо их обрабатывать и редиректить клиента
-# по actionMPI пока не будут получены в ответе is3DS: "N ", errorCode: "0 ", status: “PAYED",
-# или status: "REJECTED"- если платеж неуспешный
-
   def success?
-    result['status'] == SUCCESS_STATUS
+    result['status'] == SUCCESS_STATUS && !required_3ds?
   end
 
   def error_code
