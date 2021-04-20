@@ -7,7 +7,7 @@ class Portmone::Responses::Finish3DS
     @response = faraday_response
     @currency = currency
     @timezone = timezone
-    @response_body = @response.body.present? ? JSON.parse(@response.body) || { 'result' => {} }
+    @response_body = @response.body.present? ? JSON.parse(@response.body) : { 'result' => {} }
   end
 
   def http_status

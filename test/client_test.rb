@@ -55,7 +55,7 @@ describe Portmone::Client do
         assert_equal 'TESTPM', response.auth_code
         assert_equal 'REJECTED', response.status
         assert_equal '0', response.error_code
-        assert_nil response.error_message
+        assert_empty response.error_message
       end
     end
 
@@ -77,7 +77,7 @@ describe Portmone::Client do
         assert_equal Money.from_amount(-9.00, 'UAH'), response.reversed_amount
         assert_equal Money.from_amount(50.0, 'UAH'), response.amount
         assert_equal '434226706', response.order_id
-        assert_nil response.error_message
+        assert_empty response.error_message
       end
     end
 
