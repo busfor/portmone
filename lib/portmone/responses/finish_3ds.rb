@@ -7,7 +7,7 @@ class Portmone::Responses::Finish3DS
     @response = faraday_response
     @currency = currency
     @timezone = timezone
-    @response_body = JSON.parse(@response.body || {})
+    @response_body = @response.body.present? ? JSON.parse(@response.body) || { 'result' => {} }
   end
 
   def http_status
@@ -31,15 +31,15 @@ class Portmone::Responses::Finish3DS
   end
 
   def acs_url
-    result['actionMPI'] if required_3ds?
+    result['actionMPI']
   end
 
   def md
-    result['md'] if required_3ds?
+    result['md']
   end
 
   def pa_req
-    result['pareq'] if required_3ds?
+    result['pareq']
   end
 
   private
