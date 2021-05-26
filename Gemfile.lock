@@ -49,7 +49,7 @@ GEM
     public_suffix (3.0.0)
     rainbow (2.2.2)
       rake
-    rake (10.5.0)
+    rake (13.0.3)
     rubocop (0.51.0)
       parallel (~> 1.10)
       parser (>= 2.3.3.1, < 3.0)
@@ -83,7 +83,7 @@ DEPENDENCIES
   minitest (~> 5.0)
   portmone!
   pry (~> 0.10)
-  rake (~> 10.0)
+  rake (~> 13.0)
   rubocop (~> 0.51)
   simplecov (~> 0.14)
   vcr (~> 2.9)
