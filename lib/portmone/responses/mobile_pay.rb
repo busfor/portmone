@@ -47,6 +47,10 @@ class Portmone::Responses::MobilePay
     result['pareq'] if required_3ds?
   end
 
+  def shop_bill_id
+    result['shopBillId']
+  end
+
   private
 
   def result
